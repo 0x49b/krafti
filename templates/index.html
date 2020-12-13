@@ -7,72 +7,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Krafti</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'imagesapple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'imagesfavicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'imagesfavicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/Chart.min.css' %}" rel="stylesheet">
     <style>
         .mb-custom {
             margin-bottom: 10px;
         }
+
+        small {
+            font-size: 0.6em;
+        }
     </style>
     <script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 <body class="container text-center">
 
-<h1 class="display-4">Aktuelle Auslastung</h1>
+<h1 class="display-4 mt-3">Aktuelle Auslastung</h1>
 
 <div class="card m-auto text-start" style="max-width: 36rem;">
     <div class="card-body">
         <span>Auslastung der letzten 24h</span>
         <canvas id="myChart" class="card-img-top mb-custom"></canvas>
-        {% if open %}
-            <h5 class="card-title">Freie Slots: {{ free }}</h5>
-        {% else %}
-            <div class="alert alert-secondary" role="alert">
-                Aktuell geschlossen.
-            </div>
-        {% endif %}
+        <div id="free-closed"></div>
+        <small id="last-reload">Letzte Aktualisierung: <span id="time"></span></small>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+<button class="btn btn-outline-secondary mt-5" id="reload"><i class="fas fa-sync"></i></button>
+
 
 <script>
-    $.get("{% url 'counter-daydata' %}", function (dta) {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dta['daydata'],
-                datasets: [{
-                    label: '# Besucher',
-                    data: dta['daydata'],
-                    borderColor: 'rgba(30,101,255,1.0)',
-                    backgroundColor: 'rgba(30,101,255,0.2)',
-                    borderWidth: 1,
-                    fill: true,
-                    pointBackgroundColor: 'rgba(30,101,255,1.0)',
-                    pointRadius: 0,
-                }]
-            },
-            options: {
 
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+
+    $("#reload").on("click", function () {
+        reloadData()
+    })
+
+
+    function reloadData() {
+        $.get("{% url 'counter-daydata' %}", function (dta) {
+
+            let free_closed_elem = $("#free-closed");
+            if (dta['open']) {
+                free_closed_elem.html('<h5 class="card-title">Freie Slots: ' + dta['free'] + '</h5>');
+            } else {
+                free_closed_elem.html('<div class="alert alert-secondary" role="alert">Aktuell geschlossen.</div>');
             }
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + '.' + mm + '.' + yyyy + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            $("#time").html(today)
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dta['daydata'],
+                    datasets: [{
+                        label: '# Besucher',
+                        data: dta['daydata'],
+                        borderColor: 'rgba(30,101,255,1.0)',
+                        backgroundColor: 'rgba(30,101,255,0.2)',
+                        borderWidth: 1,
+                        fill: true,
+                        pointBackgroundColor: 'rgba(30,101,255,1.0)',
+                        pointRadius: 0,
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
         });
-    });
+    }
+
+
+    reloadData();
+    setInterval(function () {
+        reloadData();
+    }, 60000);
+
 
 </script>
 </body>

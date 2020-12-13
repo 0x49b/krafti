@@ -8,18 +8,7 @@ import json
 
 # Create your views here.
 def index(request):
-    open = False
-    if date.today().weekday() == 0:
-        open = is_time_between(time(13, 30), time(19, 00))
-    if 0 < date.today().weekday() < 6:
-        open = is_time_between(time(9, 00), time(19, 00))
-
-    last_insert = Visits.objects.latest('added')
-    context = {
-        'free': last_insert.current_free,
-        'open': open
-    }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 
 def get_daydata(request):
@@ -31,8 +20,17 @@ def get_daydata(request):
         if dta.added > tz.localize(date_from):
             daydata.append(dta.current_loggedin)
 
+    open = False
+    if date.today().weekday() == 0:
+        open = is_time_between(time(13, 30), time(19, 00))
+    if 0 < date.today().weekday() < 6:
+        open = is_time_between(time(9, 00), time(19, 00))
+    last_insert = Visits.objects.latest('added')
+
     data = {
-        'daydata': daydata
+        'daydata': daydata,
+        'open': open,
+        'free': last_insert.current_free,
     }
 
     return JsonResponse(data)
