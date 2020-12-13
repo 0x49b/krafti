@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Krafti</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'imagesapple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'imagesfavicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'imagesfavicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/Chart.min.css' %}" rel="stylesheet">
+    <style>
+        .mb-custom {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+<body class="container text-center">
+
+<h1 class="display-4">Aktuelle Auslastung</h1>
+
+<div class="card m-auto text-start" style="max-width: 36rem;">
+    <div class="card-body">
+        <span>Auslastung der letzten 24h</span>
+        <canvas id="myChart" class="card-img-top mb-custom"></canvas>
+        {% if open %}
+            <h5 class="card-title">Freie Slots: {{ free }}</h5>
+        {% else %}
+            <div class="alert alert-secondary" role="alert">
+                Aktuell geschlossen.
+            </div>
+        {% endif %}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $.get("{% url 'counter-daydata' %}", function (dta) {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dta['daydata'],
+                datasets: [{
+                    label: '# Besucher',
+                    data: dta['daydata'],
+                    borderColor: 'rgba(30,101,255,1.0)',
+                    backgroundColor: 'rgba(30,101,255,0.2)',
+                    borderWidth: 1,
+                    fill: true,
+                    pointBackgroundColor: 'rgba(30,101,255,1.0)',
+                    pointRadius: 0,
+                }]
+            },
+            options: {
+
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

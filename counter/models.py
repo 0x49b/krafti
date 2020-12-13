@@ -1,0 +1,11 @@
+from django.db import models
+
+
+# Create your models here.
+class Visits(models.Model):
+    class Meta:
+        verbose_name = 'Visit'
+        verbose_name_plural = 'Visits'
+    current_loggedin = models.BigIntegerField()
+    current_free = models.BigIntegerField()
+    added = models.DateTimeField(auto_now_add=True)
