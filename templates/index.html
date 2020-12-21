@@ -38,7 +38,7 @@
     <div class="card-body">
 
 
-        <form class="row row-cols-lg-auto g-3 align-items-center">
+        <form id="chartSelect" class="row row-cols-lg-auto g-3 align-items-center">
             <div class="col-4 col-sm-4">
                 <label for="timebox">Auslastung der letzten</label>
             </div>
@@ -76,10 +76,8 @@
                     </tbody>
                 </table>
             </div>
-            <div id="closed">
-                <div class="alert alert-secondary" role="alert"><i class="fas fa-lock text-danger"></i> Aktuell
-                    geschlossen.
-                </div>
+            <div id="closed" class="mt-2">
+                <div class="alert alert-secondary" role="alert" id="close-alert"><i class="fas fa-lock text-danger"></i> Aktuell geschlossen. </div>
             </div>
         </div>
         <small id="last-reload">Letzte Aktualisierung: <span id="time"></span></small>
@@ -87,6 +85,11 @@
 </div>
 <button class="btn btn-outline-secondary mt-5" id="reload"><i class="fas fa-sync"></i></button>
 <script>
+
+    $("#myChart").hide()
+    $("#chartSelect").hide()
+    $("#trend-data").hide()
+    $("#closed").hide()
 
     if (localStorage.getItem('timebox') === null) {
         localStorage.setItem('timebox', 24)
@@ -103,41 +106,67 @@
         reloadData()
     })
 
+    function dateToMurica(datestring) {
+        date_time = datestring.split(' ')
+        dmy = date_time[0].split('.')
+
+        new_date = dmy[0] + '/' + dmy[1] + '/' + dmy[2]
+        new_date_time = new_date + ' ' + date_time[1]
+
+        console.log(date_time)
+        console.log(dmy)
+        console.log(new_date)
+        console.log(new_date_time)
+
+        return new_date
+    }
+
 
     function reloadData() {
         var timebox = localStorage.getItem('timebox');
         $.get("{% url 'counter-daydata' %}?time=" + timebox, function (dta) {
 
             console.log(dta)
-
-            if (dta['open']) {
-                $("#current-loggedin").html(dta['visitors'])
-                $("#current-free").html(dta['free'])
-                var trend = dta['trend']
-                if (trend === "up") {
-                    $("#current-trend").html('<i class="fas fa-arrow-up text-danger"></i>')
-                } else if (trend === "stable") {
-                    $("#current-trend").html('<i class="fas fa-arrow-right text-warning"></i>')
-                } else {
-                    $("#current-trend").html('<i class="fas fa-arrow-down text-success"></i>')
-                }
-
-                $("#trend-data").show()
-                $("#closed").hide()
-
-            } else {
-                $("#trend-data").hide()
-                $("#closed").show()
-            }
-
-
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             var yyyy = today.getFullYear();
 
-            today = dd + '.' + mm + '.' + yyyy + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            $("#time").html(today)
+            today_w_zeros = dd + '.' + mm + '.' + yyyy + " " + (today.getHours() < 10 ? '0' : '') + today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes() + ":" + (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
+            $("#time").html(today_w_zeros)
+
+
+            if (!dta['permanent_closed']) {
+                console.log('NOT PERM Closed')
+                if (dta['open']) {
+                    $("#current-loggedin").html(dta['visitors'])
+                    $("#current-free").html(dta['free'])
+                    var trend = dta['trend']
+                    if (trend === "up") {
+                        $("#current-trend").html('<i class="fas fa-arrow-up text-danger"></i>')
+                    } else if (trend === "stable") {
+                        $("#current-trend").html('<i class="fas fa-arrow-right text-warning"></i>')
+                    } else {
+                        $("#current-trend").html('<i class="fas fa-arrow-down text-success"></i>')
+                    }
+
+                    $("#trend-data").show()
+                    $("#chartSelect").show()
+                    $("#myChart").show()
+                    $("#closed").hide()
+
+                } else {
+                    $("#trend-data").hide()
+                    $("#chartSelect").hide()
+                    $("#myChart").hide()
+                    $("#closed").show()
+                }
+            } else {
+
+                $("#close-alert").html("<i class=\"fas fa-lock text-danger\"></i> <span>Aktuell Geschlossen bis " + dta['permanent_closed_date'] + "</span>")
+                $("#closed").show()
+            }
+
 
             var ctx = document.getElementById('myChart').getContext('2d');
             new Chart(ctx, {

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.conf import settings
 from .models import Visits
 from datetime import date, datetime, time, timedelta, timezone
 import pytz
@@ -28,15 +29,36 @@ def get_daydata(request):
         open = time(9, 00) <= datetime.now().time() <= time(19, 00)
     last_insert = Visits.objects.latest('added')
 
+    free = 0
+    visitors = 0
+
+    if not calc_perm_closed():
+        free = last_insert.current_free
+        visitors = last_insert.current_loggedin
+
     data = {
         'daydata': daydata,
         'open': open,
-        'free': last_insert.current_free,
-        'visitors': last_insert.current_loggedin,
-        'trend': calc_trend()
+        'free': free,
+        'visitors': visitors,
+        'total': free + visitors,
+        'trend': calc_trend(),
+        'permanent_closed': calc_perm_closed(),
+        'permanent_closed_date': get_perm_close_end_date()
     }
 
     return JsonResponse(data)
+
+
+def get_perm_close_end_date():
+    perm_closed = settings.PERMANENT_CLOSED.split(" ")
+    return perm_closed[0]
+
+
+def calc_perm_closed():
+    perm_closed = datetime.strptime(settings.PERMANENT_CLOSED, '%d.%m.%Y %H:%M:%S')
+    t_now = datetime.now() - perm_closed
+    return not t_now > timedelta(0)
 
 
 def calc_trend():
