@@ -1,11 +1,25 @@
 FROM python:3
 
-MAINTAINER Maintaner Florian Thiévent
+LABEL Maintainer="Florian Thiévent"
+LABEL traefik.enable="true"
+LABEL traefik.http.middlewares.krafti-https-redirect.redirectscheme.scheme="https"
+LABEL traefik.http.routers.krafti-secure.entrypoints="https"
+LABEL traefik.http.routers.krafti-secure.rule="Host(`kr.thievent.org`)"
+LABEL traefik.http.routers.krafti-secure.service="krafti"
+LABEL traefik.http.routers.krafti-secure.tls="true"
+LABEL traefik.http.routers.krafti-secure.tls.certresolver="http"
+LABEL traefik.http.routers.krafti.entrypoints="http"
+LABEL traefik.http.routers.krafti.middlewares="krafti-https-redirect"
+LABEL traefik.http.routers.krafti.rule="Host(`kr.thievent.org`)"
+LABEL traefik.http.routers.krafti.service="krafti"
+LABEL traefik.http.routers.krafti.tls.certresolver="leresolver"
+LABEL traefik.http.services.krafti.loadbalancer.server.port="8000"
 
 # Set variables for project name, and where to place files in container.
 ENV PROJECT=krafti
 ENV CONTAINER_HOME=/opt
 ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
+ENV PERMANENT_CLOSED="22.01.2021 23:59:59"
 
 # Create application subdirectories
 RUN mkdir $CONTAINER_PROJECT
