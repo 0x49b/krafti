@@ -21,6 +21,9 @@ ENV CONTAINER_HOME=/opt
 ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
 ENV PERMANENT_CLOSED="22.01.2021 23:59:59"
 
+# Image updates
+RUN apt-get update && apt-get upgrade
+
 # Create application subdirectories
 RUN mkdir $CONTAINER_PROJECT
 WORKDIR $CONTAINER_PROJECT
@@ -35,7 +38,7 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
 COPY ./start.sh /
-RUN chmod +x start.sh 
+RUN ["chmod", "+x", "/opt/krafti/start.sh"]
 
 EXPOSE 8000
-ENTRYPOINT ["/start.sh"]
+CMD ["python", "manage.py", "runserver"]
