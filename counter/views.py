@@ -4,10 +4,14 @@ from django.conf import settings
 from .models import Visits
 from datetime import date, datetime, time, timedelta, timezone
 import pytz
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
 def index(request):
+    logger.info("index opened")
     return render(request, 'index.html')
 
 
