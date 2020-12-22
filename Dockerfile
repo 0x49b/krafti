@@ -35,6 +35,7 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
 COPY ./start.sh /
+RUN CHMOD +x start.sh 
 
 EXPOSE 8000
 ENTRYPOINT ["/start.sh"]
