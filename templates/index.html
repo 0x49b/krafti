@@ -13,10 +13,14 @@
     <meta name="theme-color" content="#ffffff">
 
     <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/Chart.min.css' %}" rel="stylesheet">
 
     <style>
+        body {
+            padding-top: 70px
+        }
+
         .mb-custom {
             margin-bottom: 10px;
         }
@@ -25,12 +29,27 @@
             font-size: 0.6em;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/Chart.bundle.min.js' %}"></script>
 
 <body class="container text-center">
-<h1 class="display-4 mt-3">Aktuelle Auslastung</h1>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/android-chrome-512x512.png' %}" alt="" width="30" height="30"
+                 class="d-inline-block align-text-top">
+            Aktuelle Auslastung
+        </a>
+        <button class="btn btn-outline-secondary" id="info" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                id="info" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></button>
+        <button class="btn btn-outline-secondary" id="reload"><i id="sync-box" class="fas fa-sync"></i></button>
+    </div>
+</nav>
+
+
 <div class="card m-auto text-start" style="max-width: 36rem;">
     <div class="card-body">
         <form id="chartSelect" class="row row-cols-lg-auto g-3 align-items-center">
@@ -77,41 +96,63 @@
         <small id="last-reload">Letzte Aktualisierung: <span id="time">loading ...</span></small>
     </div>
 </div>
-<button class="btn btn-outline-secondary m-3" id="reload"><i id="sync-box" class="fas fa-sync"></i></button>
-<div class="card m-auto text-start" style="max-width: 36rem;">
-    <div class="card-body">
-        <ul>
-            <li>Es gilt in allen Bereichen der Kletteranlage eine <strong>Maskenpflicht</strong>, auch während dem
-                Klettern
-                und Bouldern (ausser für Kinder unter 12 Jahren).
-            </li>
-            <li>Auf Basis der Verordnung dürfen wir <strong>max. 124 Gäste</strong> in der Kletterhalle gleichzeitig
-                empfangen. (Die aktuelle Besucherzahl siehst du auf dieser Webseite unter <a
-                        href="https://kraftreaktor.ch/ueber/oeffnungszeiten/">Öffnungszeiten</a>) Daher wird die
-                Aufenthaltsdauer in den Stosszeiten auf max. zwei Stunden begrenzt. Wir bitten alle Personen sich
-                konsequent
-                einzuchecken und selbstständig und eigenverantwortlich die Halle nach der max. Aufenthaltsdauer zu
-                verlassen
-                und am Self-Check-Out oder an der Kasse aus zu checken. Es gibt keine Slotbuchung.
-            </li>
-            <li>Bitte versammelt euch nicht in grösseren Gruppen als 15 Personen und haltet einen <strong>Abstand von
-                1.50
-                m</strong> ein. Beachtet die Abstands- und Hygieneregeln des BAG.
-            </li>
-            <li>Bitte benutzt&nbsp;<strong>Flüssigmagnesium</strong>.</li>
-            <li>Wenn möglich komme bitte bereits umgezogen. Die Garderoben sind zwar offen, aber die Abstandsregeln
-                müssen
-                auch trotz der engen Platzverhältnisse eingehalten werden. Die Duschen sind geschlossen.
-            </li>
-            <li><strong>Mietmaterial</strong> steht zur Verfügung.</li>
-            <li><strong>Kurse</strong> finden statt. Kurse können über unsere Webseite gebucht werden. Wir bitten um
-                etwas
-                Geduld.
-            </li>
-            <li><strong>Zuschauer</strong> sind im Moment leider nicht erlaubt.</li>
-        </ul>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informationen zum Besuch</h5>
+            </div>
+            <div class="modal-body">
+                <ul class="text-start">
+                    <li>Es gilt in allen Bereichen der Kletteranlage eine <strong>Maskenpflicht</strong>, auch während
+                        dem
+                        Klettern
+                        und Bouldern (ausser für Kinder unter 12 Jahren).
+                    </li>
+                    <li>Auf Basis der Verordnung dürfen wir <strong>max. 124 Gäste</strong> in der Kletterhalle
+                        gleichzeitig
+                        empfangen. (Die aktuelle Besucherzahl siehst du auf dieser Webseite unter <a
+                                href="https://kraftreaktor.ch/ueber/oeffnungszeiten/">Öffnungszeiten</a>) Daher wird die
+                        Aufenthaltsdauer in den Stosszeiten auf max. zwei Stunden begrenzt. Wir bitten alle Personen
+                        sich
+                        konsequent
+                        einzuchecken und selbstständig und eigenverantwortlich die Halle nach der max. Aufenthaltsdauer
+                        zu
+                        verlassen
+                        und am Self-Check-Out oder an der Kasse aus zu checken. Es gibt keine Slotbuchung.
+                    </li>
+                    <li>Bitte versammelt euch nicht in grösseren Gruppen als 15 Personen und haltet einen <strong>Abstand
+                        von
+                        1.50
+                        m</strong> ein. Beachtet die Abstands- und Hygieneregeln des BAG.
+                    </li>
+                    <li>Bitte benutzt&nbsp;<strong>Flüssigmagnesium</strong>.</li>
+                    <li>Wenn möglich komme bitte bereits umgezogen. Die Garderoben sind zwar offen, aber die
+                        Abstandsregeln
+                        müssen
+                        auch trotz der engen Platzverhältnisse eingehalten werden. Die Duschen sind geschlossen.
+                    </li>
+                    <li><strong>Mietmaterial</strong> steht zur Verfügung.</li>
+                    <li><strong>Kurse</strong> finden statt. Kurse können über unsere Webseite gebucht werden. Wir
+                        bitten um
+                        etwas
+                        Geduld.
+                    </li>
+                    <li><strong>Zuschauer</strong> sind im Moment leider nicht erlaubt.</li>
+                </ul>
+                <button type="button" id="close-modal" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <small>Es gelten die bestimmungen des Kraftreaktors. Die aktuellsten Informationen sind auf
+                    kraftreaktor.ch zu finden. Diese Seite steht in keinem zusammenhang mit dem Kraftreaktor. Diese
+                    Seite verwendet keine 🍪 .</small>
+            </div>
+        </div>
     </div>
 </div>
+
 <script>
     var syncbox = document.getElementById("sync-box")
 
@@ -123,6 +164,15 @@
     if (localStorage.getItem('timebox') === null) {
         localStorage.setItem('timebox', 24)
     }
+
+    if (localStorage.getItem('visitorinfo') === null) {
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {})
+        myModal.show()
+    }
+
+    $("#close-modal").on("click", function () {
+        localStorage.setItem('visitorinfo', true)
+    })
 
     $("#timebox").val(localStorage.getItem('timebox'))
 
