@@ -32,6 +32,7 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'js/pulltorefresh.js' %}"></script>
 
 <body class="container text-center">
 
@@ -154,6 +155,14 @@
 </div>
 
 <script>
+
+    PullToRefresh.init({
+        mainElement: 'body',
+        onRefresh: function () {
+            reloadData()
+        }
+    });
+
     var syncbox = document.getElementById("sync-box")
 
     $("#myChart").hide()
@@ -178,6 +187,7 @@
 
     $("#reload").on("click", function () {
         reloadData()
+        document.activeElement.blur()
     })
 
     $("#timebox").on("change", function () {

@@ -9,17 +9,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
 def index(request):
-    logger.info("index opened")
     return render(request, 'index.html')
 
 
 def get_daydata(request):
     timebox = float(request.GET["time"])
-
     date_from = datetime.now() - timedelta(hours=timebox)
-    last_24 = Visits.objects.all()
+    last_24 = Visits.objects.all().order_by('-added')[:int(timebox * 60)]
     tz = pytz.timezone("Europe/Zurich")
     daydata = []
     for dta in last_24:
