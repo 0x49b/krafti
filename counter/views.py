@@ -24,10 +24,12 @@ def get_daydata(request):
             daydata.append(dta.current_loggedin)
 
     open = False
-    if date.today().weekday() == 0:
-        open = time(13, 00) <= datetime.now().time() <= time(19, 00)
-    if 0 < date.today().weekday() < 6:
-        open = time(9, 00) <= datetime.now().time() <= time(19, 00)
+    if date.today().weekday() == 0 or date.today().weekday() == 4:
+        open = time(13, 00) <= datetime.now().time() <= time(22, 00)
+    if 0 < date.today().weekday() < 3:
+        open = time(9, 00) <= datetime.now().time() <= time(22, 00)
+    if 4 < date.today().weekday() < 6:
+        open = time(9, 00) <= datetime.now().time() <= time(20, 00)
     last_insert = Visits.objects.latest('added')
 
     free = 0
