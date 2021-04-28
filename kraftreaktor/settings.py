@@ -6,6 +6,9 @@ SECRET_KEY = 't%g=4g8w6f-s-2(!ah_+#%3j@9y&o-k#*c_gjr8q8c4@&28(^q'
 DEBUG = True
 ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "*"]
 PERMANENT_CLOSED = os.getenv('PERMANENT_CLOSED', '01.01.1900 00:00:00')
+OPENING_TIMES = os.getenv('OPENING_TIMES',
+                          {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"),
+                           4: ("13:00", "22:00"), 5: ("09:00", "20:00"), 6: ("09:00", "20:00")})
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -14,7 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'counter'
+    'colorfield',
+    'counter',
+    'routes'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

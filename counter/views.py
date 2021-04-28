@@ -23,13 +23,14 @@ def get_daydata(request):
         if dta.added > tz.localize(date_from):
             daydata.append(dta.current_loggedin)
 
-    open = False
-    if date.today().weekday() == 0 or date.today().weekday() == 4:
-        open = time(13, 00) <= datetime.now().time() <= time(22, 00)
-    if 0 < date.today().weekday() < 3:
-        open = time(9, 00) <= datetime.now().time() <= time(22, 00)
-    if 4 < date.today().weekday() < 6:
-        open = time(9, 00) <= datetime.now().time() <= time(20, 00)
+    opening_times = settings.OPENING_TIMES
+    times = opening_times.get(date.today().weekday())
+    start = times[0].split(":")
+    end = times[1].split(":")
+    open = time(int(start[0]), int(start[1])) <= datetime.now().time() <= time(int(end[0]), int(end[1]))
+
+    print(open)
+
     last_insert = Visits.objects.latest('added')
 
     free = 0
