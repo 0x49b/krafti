@@ -18,8 +18,6 @@ class RouteAdmin(admin.ModelAdmin):
     )
 
     list_filter = ('grade', 'length', 'categorie')
-
     search_fields = ('name', 'grade', 'length', 'date')
-
 
 admin.site.register(Route, RouteAdmin)
