@@ -22,7 +22,7 @@ ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
 ENV PERMANENT_CLOSED="22.01.2021 23:59:59"
 
 # Image updates
-RUN apt-get update && apt-get upgrade
+# RUN apt-get update && apt-get upgrade
 
 # Create application subdirectories
 RUN mkdir $CONTAINER_PROJECT
