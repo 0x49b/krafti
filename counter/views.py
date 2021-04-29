@@ -28,9 +28,6 @@ def get_daydata(request):
     start = times[0].split(":")
     end = times[1].split(":")
     open = time(int(start[0]), int(start[1])) <= datetime.now().time() <= time(int(end[0]), int(end[1]))
-
-    print(open)
-
     last_insert = Visits.objects.latest('added')
 
     free = 0
