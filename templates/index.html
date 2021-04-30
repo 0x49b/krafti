@@ -156,12 +156,12 @@
                     {% else %}
                         <h3>Neue Routen letzte Woche</h3>
                     {% endif %}
-                        <a class="btn btn-sm btn-outline-secondary" href="https://kraftreaktor.ch/angebot/routenliste/">Alle Routen <i class="fas fa-arrow-right"></i></a>
+                    <a class="btn btn-sm btn-outline-secondary" href="https://kraftreaktor.ch/angebot/routenliste/">Alle
+                        Routen <i class="fas fa-arrow-right"></i></a>
                     <table>
                         <tr>
                             <th>Grad</th>
                             <th>Name</th>
-                            <th>Erbauer</th>
                             <th>L</th>
                             <th>Wand</th>
                         </tr>
@@ -174,9 +174,6 @@
                                 </td>
                                 <td class="name pr">
                                     {{ route.name }}
-                                </td>
-                                <td class="pr">
-                                    {{ route.setter }}
                                 </td>
                                 <td class="pr">
                                     {{ route.length }}
@@ -403,7 +400,7 @@
     $(document).ready(function () {
         $(".owl-carousel").owlCarousel({
             'items': 1,
-            'nav': true
+            'dots': true
         });
     });
 </script>
