@@ -16,6 +16,10 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/Chart.min.css' %}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{% static 'owl/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owl/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font/stylesheet.css' %}">
+
     <style>
         body {
             padding-top: 70px
@@ -27,6 +31,47 @@
 
         small {
             font-size: 0.6em;
+        }
+    </style>
+    <style>
+        table th, table td {
+            position: relative;
+            width: auto;
+            font-weight: normal;
+            text-align: left;
+            border-bottom: 2px solid #1D1D1D;
+            overflow: hidden;
+        }
+
+        .name {
+            padding-left: 10px;
+        }
+
+        .pr {
+            padding-right: 22px;
+        }
+
+        table td.grad {
+            padding: 0;
+            overflow: hidden;
+            height: 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+        td.grad .grad_outer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        td.grad span {
+            position: relative;
+            display: inline-block;
+            font-family: 'stolzlbold', sans-serif;
+            font-size: 13px;
+            transform: rotate(-90deg);
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #1D1D1D;
         }
     </style>
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -96,6 +141,66 @@
         </div>
         <small id="last-reload">Letzte Aktualisierung: <span id="time">loading ...</span></small>
     </div>
+</div>
+
+
+<div class="owl-carousel mt-3">
+
+    {% for week in routes %}
+        <div>
+            <div class="card m-auto text-start" style="max-width: 36rem;">
+                <div class="card-body">
+
+                    {% if forloop.first %}
+                        <h3>Diese Woche neue Routen</h3>
+                    {% else %}
+                        <h3>Neue Routen letzte Woche</h3>
+                    {% endif %}
+                        <a class="btn btn-sm btn-outline-secondary" href="https://kraftreaktor.ch/angebot/routenliste/">Alle Routen <i class="fas fa-arrow-right"></i></a>
+                    <table>
+                        <tr>
+                            <th>Grad</th>
+                            <th>Name</th>
+                            <th>Erbauer</th>
+                            <th>L</th>
+                            <th>Wand</th>
+                        </tr>
+                        {% for route in week %}
+                            <tr role="row">
+                                <td class="grad" style="background:{{ route.color }};">
+                                    <div class="grad_outer">
+                                        <span>{{ route.grade }}</span>
+                                    </div>
+                                </td>
+                                <td class="name pr">
+                                    {{ route.name }}
+                                </td>
+                                <td class="pr">
+                                    {{ route.setter }}
+                                </td>
+                                <td class="pr">
+                                    {{ route.length }}
+                                </td>
+                                <td class="pr">
+                                    {% if route.categorie == 0 %}
+                                        Galerie Vorstieg
+                                    {% elif route.categorie == 1 %}
+                                        Turm Toprope
+                                    {% elif route.categorie == 2 %}
+                                        Turm Vorstieg
+                                    {% elif route.categorie == 3 %}
+                                        Hauptwand
+                                    {% elif route.categorie == 4 %}
+                                        Galerie Toprope
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -292,6 +397,15 @@
     }, 60000);
 
 
+</script>
+<script src="{% static 'owl/owl.carousel.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            'items': 1,
+            'nav': true
+        });
+    });
 </script>
 </body>
 </html>

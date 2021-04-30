@@ -5,12 +5,31 @@ from .models import Visits
 from datetime import date, datetime, time, timedelta, timezone
 import pytz
 import logging
+from routes.models import Route
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    return render(request, 'index.html')
+    rts = Route.objects.all().order_by('categorie')
+
+    cweek = datetime.today().isocalendar()[1]
+
+    weeks = []
+    weeks.append(cweek)
+    thisweekroutes = []
+    lastweekroutes = []
+
+    for rt in rts:
+        if rt.date.isocalendar()[1] == cweek:
+            thisweekroutes.append(rt)
+        if rt.date.isocalendar()[1] == cweek - 1:
+            lastweekroutes.append(rt)
+
+    routes = []
+    routes.append(thisweekroutes)
+    routes.append(lastweekroutes)
+    return render(request, 'index.html', {'routes': routes})
 
 
 def get_daydata(request):

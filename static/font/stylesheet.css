@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'stolzlbold';
+    src: url('stolzl_bold-webfont.woff2') format('woff2'),
+    url('stolzl_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'stolzl_displayregular';
+    src: url('stolzl_display-webfont.woff2') format('woff2'),
+    url('stolzl_display-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'stolzl_displaybold';
+    src: url('stolzl_display_bold-webfont.woff2') format('woff2'),
+    url('stolzl_display_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'stolzl_displaylight';
+    src: url('stolzl_display_light-webfont.woff2') format('woff2'),
+    url('stolzl_display_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'stolzl_displaymedium';
+    src: url('stolzl_display_medium-webfont.woff2') format('woff2'),
+    url('stolzl_display_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'stolzl_displaynormal';
+    src: url('stolzl_display_normal-webfont.woff2') format('woff2'),
+    url('stolzl_display_normal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'stolzl_displaythin';
+    src: url('stolzl_display_thin-webfont.woff2') format('woff2'),
+    url('stolzl_display_thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
