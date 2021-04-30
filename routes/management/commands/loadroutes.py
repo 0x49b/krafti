@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import requests
 from bs4 import BeautifulSoup
-from routes.models import Route
+from routes.models import Route, RouteArchive
 from datetime import datetime
 import logging
 
@@ -59,10 +59,21 @@ class Command(BaseCommand):
             i = i + 1
 
         # Check the db routes if they are currently active
+        logger.info("Checking routes active")
         db_routes = Route.objects.all()
         for db_route in db_routes:
             if db_route.name not in loaded_routes:
-                db_route.active = False
-                db_route.save()
+                RouteArchive.objects.create(
+                    grade=db_route.grade,
+                    color=db_route.color,
+                    name=db_route.name,
+                    setter=db_route.setter,
+                    date=db_route.date,
+                    length=db_route.length,
+                    route_num=db_route.route_num,
+                    categorie=db_route.categorie,
+                )
+
+                db_route.delete()
 
         logger.info("finished loading routes")
