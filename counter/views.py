@@ -42,8 +42,10 @@ def get_daydata(request):
         if dta.added > tz.localize(date_from):
             daydata.append(dta.current_loggedin)
 
-    opening_times = settings.OPENING_TIMES
+    opening_times = {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"),4: ("13:00", "22:00"), 5: ("09:00", "20:00"), 6: ("09:00", "20:00")}
+    
     times = opening_times.get(date.today().weekday())
+    
     start = times[0].split(":")
     end = times[1].split(":")
     open = time(int(start[0]), int(start[1])) <= datetime.now().time() <= time(int(end[0]), int(end[1]))
