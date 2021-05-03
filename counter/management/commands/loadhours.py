@@ -1,9 +1,6 @@
-from django.core.management.base import BaseCommand
 import requests
 from bs4 import BeautifulSoup
-from counter.models import Visits
-from datetime import datetime
-import pytz
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

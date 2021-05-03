@@ -1,9 +1,12 @@
-from django.core.management.base import BaseCommand
+import logging
+from datetime import datetime
+from django.db.models import Q
+
 import requests
 from bs4 import BeautifulSoup
-from routes.models import Route, RouteArchive
-from datetime import datetime
-import logging
+from django.core.management.base import BaseCommand
+
+from routes.models import Route, RouteArchive, GradeScale, Category
 
 logger = logging.getLogger('root')
 
@@ -36,19 +39,29 @@ class Command(BaseCommand):
                 date = datetime.strptime(d, "%d.%m.%Y")
                 length = tds[4].text.lstrip().rstrip()
                 route_num = tds[5].text.lstrip().rstrip()
-                categorie = i
+                categorie = i + 1
 
                 loaded_routes.append(name)
+                try:
+                    grd = GradeScale.objects.get(Q(french__iexact=grade))
+                except Exception as e:
+                    grd = None
+
+                try:
+                    cat = Category.objects.get(id=categorie)
+                except Exception as e:
+                    cat = None
 
                 route, created = Route.objects.update_or_create(
                     grade=grade,
+                    grd=grd,
                     color=color,
                     name=name,
                     setter=setter,
                     date=date,
                     length=length,
                     route_num=route_num,
-                    categorie=categorie,
+                    category=cat,
                 )
 
                 if created:
@@ -65,13 +78,14 @@ class Command(BaseCommand):
             if db_route.name not in loaded_routes:
                 RouteArchive.objects.create(
                     grade=db_route.grade,
+                    grd=db_route.grd,
                     color=db_route.color,
                     name=db_route.name,
                     setter=db_route.setter,
                     date=db_route.date,
                     length=db_route.length,
                     route_num=db_route.route_num,
-                    categorie=db_route.categorie,
+                    category=db_route.category
                 )
 
                 db_route.delete()

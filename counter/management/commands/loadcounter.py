@@ -1,9 +1,12 @@
-from django.core.management.base import BaseCommand
+from datetime import datetime
+
+import pytz
 import requests
 from bs4 import BeautifulSoup
+from django.core.management.base import BaseCommand
+
 from counter.models import Visits
-from datetime import datetime
-import pytz
+
 
 class Command(BaseCommand):
     help = "Get journal Entries for Kraftreaktor Website"

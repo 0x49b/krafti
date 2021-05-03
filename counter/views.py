@@ -1,17 +1,19 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.conf import settings
-from .models import Visits
-from datetime import date, datetime, time, timedelta, timezone
-import pytz
 import logging
+from datetime import date, datetime, time, timedelta
+
+import pytz
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+
 from routes.models import Route
+from .models import Visits
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    rts = Route.objects.all().order_by('categorie')
+    rts = Route.objects.all().order_by('category')
 
     cweek = datetime.today().isocalendar()[1]
     thisweekroutes = []
@@ -37,7 +39,8 @@ def get_daydata(request):
         if dta.added > tz.localize(date_from):
             daydata.append(dta.current_loggedin)
 
-    opening_times = {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"), 4: ("13:00", "22:00"), 5: ("09:00", "20:00"), 6: ("09:00", "20:00")}
+    opening_times = {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"),
+                     4: ("13:00", "22:00"), 5: ("09:00", "20:00"), 6: ("09:00", "20:00")}
 
     times = opening_times.get(date.today().weekday())
 

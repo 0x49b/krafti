@@ -173,7 +173,7 @@
                                 <tr role="row">
                                     <td class="grad" style="background:{{ route.color }};">
                                         <div class="grad_outer">
-                                            <span>{{ route.grade }}</span>
+                                            <span>{{ route.grd.french }}</span>
                                         </div>
                                     </td>
                                     <td class="name pr">
@@ -183,17 +183,7 @@
                                         {{ route.length }}
                                     </td>
                                     <td class="pr">
-                                        {% if route.categorie == 0 %}
-                                            Galerie Vorstieg
-                                        {% elif route.categorie == 1 %}
-                                            Turm Toprope
-                                        {% elif route.categorie == 2 %}
-                                            Turm Vorstieg
-                                        {% elif route.categorie == 3 %}
-                                            Hauptwand
-                                        {% elif route.categorie == 4 %}
-                                            Galerie Toprope
-                                        {% endif %}
+                                        {{ route.category.name }}
                                     </td>
                                 </tr>
                             {% endfor %}

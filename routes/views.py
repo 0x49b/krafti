@@ -1,10 +1,11 @@
-from django.shortcuts import render
-from rest_framework.response import Response
-
-from .models import Route, RouteArchive
 from datetime import datetime
-from rest_framework import viewsets, generics
-from .serializers import RouteSerializer, RouteArchiveSerializer
+
+from django.db.models import Q
+from django.shortcuts import render
+from rest_framework import viewsets
+
+from .models import Route, RouteArchive, Category, GradeScale
+from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer
 
 
 class RouteViewSet(viewsets.ModelViewSet):
@@ -25,8 +26,26 @@ class RouteArchiveViewSet(viewsets.ModelViewSet):
     http_method_names = ['get']
 
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API Endpoint to view categories
+    """
+    queryset = Category.objects.all().order_by('id')
+    serializer_class = CategorySerializer
+    http_method_names = ['get']
+
+
+class GradeScaleViewSet(viewsets.ModelViewSet):
+    """
+    API Endpoint to view grade scales
+    """
+    queryste = GradeScale.objects.all()
+    serializer_class = GradeScaleSerializer
+    http_method_names = ['get']
+
+
 def testRouteList(request):
-    rts = Route.objects.all().order_by('categorie')
+    rts = Route.objects.all().order_by('category')
 
     cweek = datetime.today().isocalendar()[1]
 
@@ -46,3 +65,24 @@ def testRouteList(request):
     routes.append(lastweekroutes)
 
     return render(request, 'routetest.html', {'routes': routes})
+
+
+def gradetest(request):
+    if request.method == 'GET':
+        return render(request, 'gradetest.html')
+    elif request.method == 'POST':
+        grade = request.POST['grade']
+        grade = grade.lower()
+
+        if grade == "*":
+            grade_scales_filtered = GradeScale.objects.all()
+        else:
+            grade_scales_filtered = GradeScale.objects.filter(
+                Q(french__iexact=grade)
+            )
+        if len(grade_scales_filtered) == 0:
+            message = "Nothing found for <b>%s</b>" % grade
+        else:
+            message = "Searchresults for <b>%s</b>" % grade
+
+        return render(request, 'gradetest.html', {'grades': grade_scales_filtered, 'message': message})

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradetest</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body class="container">
+
+<div class="row mt-2">
+    Search for grade:
+    <form method="post" action="{% url 'routes-grade-test' %}" class="row g-2">
+        {% csrf_token %}
+        <div class="col-auto">
+            <input type="text" name="grade" class="form-control">
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="form-control btn btn-outline-primary">
+        </div>
+    </form>
+</div>
+
+
+{% if message %}
+
+    <div class="row mt-3">
+        <div class="alert alert-dark" role="alert">
+            {{ message | safe }}
+        </div>
+    </div>
+
+{% endif %}
+
+<div class="row mt-2">
+    {% if grades|length > 0 %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">yds</th>
+                <th scope="col">british_tech</th>
+                <th scope="col">british_adj</th>
+                <th scope="col">french</th>
+                <th scope="col">uiaa</th>
+                <th scope="col">australia</th>
+                <th scope="col">saxon</th>
+                <th scope="col">scandinavia</th>
+                <th scope="col">brasil</th>
+                <th scope="col">fontainebleu</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for grade in grades %}
+                <tr>
+                    <td>{{ grade.yds }}</td>
+                    <td>{{ grade.british_tech }}</td>
+                    <td>{{ grade.british_adj }}</td>
+                    <td>{{ grade.french }}</td>
+                    <td>{{ grade.uiaa }}</td>
+                    <td>{{ grade.australia }}</td>
+                    <td>{{ grade.saxon }}</td>
+                    <td>{{ grade.scandinavia }}</td>
+                    <td>{{ grade.brasil }}</td>
+                    <td>{{ grade.fontainebleu }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+</body>
+</html>
