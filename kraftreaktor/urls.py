@@ -9,7 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'routes', routes.RouteViewSet)
 router.register(r'routes-archive', routes.RouteArchiveViewSet)
 router.register(r'categories', routes.CategoryViewSet)
-router.register(r'gradescales', routes.GradeScaleViewSet)
+router.register(r'grade-scales', routes.GradeScaleViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('get-daydata/', counter.get_daydata, name='counter-daydata'),
     path('route-test/', routes.testRouteList, name='routes-test'),
     path('grade-test/', routes.gradetest, name='routes-grade-test'),
+
 ]

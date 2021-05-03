@@ -6,13 +6,13 @@ from .models import Route, RouteArchive, Category, GradeScale
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
-        fields = ['id', 'url', 'grade', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug']
+        fields = ['id', 'url', 'grd', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug']
 
 
 class RouteArchiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = RouteArchive
-        fields = ['id', 'url', 'grade', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug',
+        fields = ['id', 'url', 'grd', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug',
                   'archived']
 
 
