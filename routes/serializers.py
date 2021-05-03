@@ -25,17 +25,5 @@ class CategorySerializer(serializers.ModelSerializer):
 class GradeScaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = GradeScale
-        fields = [
-            'id',
-            'url',
-            'yds',
-            'british_tech',
-            'british_adj',
-            'french',
-            'uiaa',
-            'australia',
-            'saxon',
-            'scandinavia',
-            'brasil',
-            'fontainebleu',
-        ]
+        fields = ['id', 'url', 'yds', 'british_tech', 'british_adj', 'french', 'uiaa', 'australia', 'saxon',
+                  'scandinavia', 'brasil', 'fontainebleu']

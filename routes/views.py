@@ -39,7 +39,7 @@ class GradeScaleViewSet(viewsets.ModelViewSet):
     """
     API Endpoint to view grade scales
     """
-    queryste = GradeScale.objects.all()
+    queryset = GradeScale.objects.all().order_by('french')
     serializer_class = GradeScaleSerializer
     http_method_names = ['get']
 
