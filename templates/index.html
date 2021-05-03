@@ -147,56 +147,76 @@
 <div class="owl-carousel mt-3">
 
     {% for week in routes %}
+
+
         <div>
             <div class="card m-auto text-start" style="max-width: 36rem;">
                 <div class="card-body">
-
                     {% if forloop.first %}
                         <h3>Diese Woche neue Routen</h3>
                     {% else %}
                         <h3>Neue Routen letzte Woche</h3>
                     {% endif %}
-                    <a class="btn btn-sm btn-outline-secondary" href="https://kraftreaktor.ch/angebot/routenliste/">Alle
-                        Routen <i class="fas fa-arrow-right"></i></a>
-                    <table>
-                        <tr>
-                            <th>Grad</th>
-                            <th>Name</th>
-                            <th>L</th>
-                            <th>Wand</th>
-                        </tr>
-                        {% for route in week %}
-                            <tr role="row">
-                                <td class="grad" style="background:{{ route.color }};">
-                                    <div class="grad_outer">
-                                        <span>{{ route.grade }}</span>
-                                    </div>
-                                </td>
-                                <td class="name pr">
-                                    {{ route.name }}
-                                </td>
-                                <td class="pr">
-                                    {{ route.length }}
-                                </td>
-                                <td class="pr">
-                                    {% if route.categorie == 0 %}
-                                        Galerie Vorstieg
-                                    {% elif route.categorie == 1 %}
-                                        Turm Toprope
-                                    {% elif route.categorie == 2 %}
-                                        Turm Vorstieg
-                                    {% elif route.categorie == 3 %}
-                                        Hauptwand
-                                    {% elif route.categorie == 4 %}
-                                        Galerie Toprope
-                                    {% endif %}
-                                </td>
+
+                    {% if week|length > 0 %}
+
+                        <a class="btn btn-sm btn-outline-secondary" href="https://kraftreaktor.ch/angebot/routenliste/">Alle
+                            Routen <i class="fas fa-arrow-right"></i></a>
+                        <table>
+                            <tr>
+                                <th>Grad</th>
+                                <th>Name</th>
+                                <th>L</th>
+                                <th>Wand</th>
                             </tr>
-                        {% endfor %}
-                    </table>
+                            {% for route in week %}
+                                <tr role="row">
+                                    <td class="grad" style="background:{{ route.color }};">
+                                        <div class="grad_outer">
+                                            <span>{{ route.grade }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="name pr">
+                                        {{ route.name }}
+                                    </td>
+                                    <td class="pr">
+                                        {{ route.length }}
+                                    </td>
+                                    <td class="pr">
+                                        {% if route.categorie == 0 %}
+                                            Galerie Vorstieg
+                                        {% elif route.categorie == 1 %}
+                                            Turm Toprope
+                                        {% elif route.categorie == 2 %}
+                                            Turm Vorstieg
+                                        {% elif route.categorie == 3 %}
+                                            Hauptwand
+                                        {% elif route.categorie == 4 %}
+                                            Galerie Toprope
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <span>
+                    Keine neuen Routen bisher in dieser Woche.
+                         <a class="btn btn-sm btn-outline-secondary"
+                            href="https://kraftreaktor.ch/angebot/routenliste/">Alle
+                            Routen <i class="fas fa-arrow-right"></i></a>
+                    </span>
+
+                    {% endif %}
+                    <br/>
+                    {% if forloop.first %}
+                        <small class="text-end">Swipe zur Vorwoche <i class="fas fa-chevron-right"></i></small>
+                    {% else %}
+                        <small><i class="fas fa-chevron-left"></i> Swipe zur aktuellen Woche</small>
+                    {% endif %}
                 </div>
             </div>
         </div>
+
     {% endfor %}
 </div>
 
