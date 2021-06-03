@@ -76,6 +76,7 @@ class Command(BaseCommand):
         for db_route in db_routes:
             if db_route.name not in loaded_routes:
                 RouteArchive.objects.create(
+                    uuid=db_route.uuid,
                     grd=db_route.grd,
                     color=db_route.color,
                     name=db_route.name,

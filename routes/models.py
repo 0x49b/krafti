@@ -1,6 +1,18 @@
+import uuid as uuid
 from colorfield.fields import ColorField
 from django.db import models
 from django.template.defaultfilters import slugify
+
+
+class GradeScaleCategory(models.Model):
+    class Meta:
+        verbose_name = "Grad Skala Kategorie"
+        verbose_name_plural = "Grad Skala Kategorien"
+
+    name = models.CharField(max_length=100, blank=False, null=False)
+
+    def __str__(self):
+        return self.name
 
 
 class GradeScale(models.Model):
@@ -45,6 +57,7 @@ class Route(models.Model):
         verbose_name = "Route"
         verbose_name_plural = "Routen"
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
@@ -71,6 +84,7 @@ class RouteArchive(models.Model):
         verbose_name = "[Archiv] Route"
         verbose_name_plural = "[Archiv] Routen"
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False, unique=True)
