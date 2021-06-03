@@ -20,7 +20,7 @@ class GradeScale(models.Model):
     fontainebleu = models.CharField(max_length=10, verbose_name="Fontainebleu", null=True, blank=True)
 
     def __str__(self):
-        return "Grade %s" % self.french
+        return "%s" % self.french
 
 
 class Category(models.Model):
@@ -45,7 +45,7 @@ class Route(models.Model):
         verbose_name = "Route"
         verbose_name_plural = "Routen"
 
-    grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL)
+    grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
     setter = models.CharField(max_length=25, null=False, blank=False)
@@ -71,7 +71,7 @@ class RouteArchive(models.Model):
         verbose_name = "[Archiv] Route"
         verbose_name_plural = "[Archiv] Routen"
 
-    grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL)
+    grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False, unique=True)
     setter = models.CharField(max_length=25, null=False, blank=False)
