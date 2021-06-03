@@ -47,7 +47,7 @@ class Route(models.Model):
 
     grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL)
     color = ColorField(null=False, blank=False)
-    name = models.CharField(max_length=250, null=False, blank=False, unique=True)
+    name = models.CharField(max_length=250, null=False, blank=False)
     setter = models.CharField(max_length=25, null=False, blank=False)
     date = models.DateField(auto_now_add=False, auto_created=False, auto_now=False)
     length = models.IntegerField(null=False, blank=False)
@@ -61,8 +61,8 @@ class Route(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return "%s %s %s %s %s %s, %s, %s" % (
-            self.grd.french, self.color, self.name, self.setter, self.date, self.length, self.route_num,
+        return "%s %s %s %s %s, %s, %s" % (
+            self.color, self.name, self.setter, self.date, self.length, self.route_num,
             self.category.name)
 
 

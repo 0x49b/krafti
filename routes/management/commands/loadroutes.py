@@ -53,7 +53,6 @@ class Command(BaseCommand):
                     cat = None
 
                 route, created = Route.objects.update_or_create(
-                    grade=grade,
                     grd=grd,
                     color=color,
                     name=name,
@@ -77,7 +76,6 @@ class Command(BaseCommand):
         for db_route in db_routes:
             if db_route.name not in loaded_routes:
                 RouteArchive.objects.create(
-                    grade=db_route.grade,
                     grd=db_route.grd,
                     color=db_route.color,
                     name=db_route.name,
