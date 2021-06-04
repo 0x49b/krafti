@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 't%g=4g8w6f-s-2(!ah_+#%3j@9y&o-k#*c_gjr8q8c4@&28(^q'
 DEBUG = True
-ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "climbswiss.ch","www.climbswiss.ch"]
+ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "climbswiss.ch", "www.climbswiss.ch", "127.0.0.1"]
 PERMANENT_CLOSED = os.getenv('PERMANENT_CLOSED', '01.01.1900 00:00:00')
 OPENING_TIMES = os.getenv('OPENING_TIMES',
                           {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"),
@@ -110,5 +110,6 @@ LOGGING = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
 }

@@ -57,7 +57,7 @@ class Route(models.Model):
         verbose_name = "Route"
         verbose_name_plural = "Routen"
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4(), editable=False, null=True)
     grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
@@ -69,6 +69,8 @@ class Route(models.Model):
     slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
+        if not self.uuid or self.uuid is None:
+            self.uuid = uuid.uuid4()
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)

@@ -28,7 +28,9 @@ class Command(BaseCommand):
             for tr in trs:
                 tds = tr.findAll('td')
 
-                grade = tds[0].find('span').text
+                grade = tds[0].find('span').text.lstrip().rstrip()
+                print(grade)
+
                 c = tds[0]['style']
                 color_raw = c.split(":")
                 color = color_raw[1].split(';')[0]
@@ -44,6 +46,10 @@ class Command(BaseCommand):
                 loaded_routes.append(name)
                 try:
                     grd = GradeScale.objects.get(Q(french__iexact=grade))
+                    grds = GradeScale.objects.get(french=grade)
+
+                    print(grds)
+
                 except Exception as e:
                     grd = None
 
