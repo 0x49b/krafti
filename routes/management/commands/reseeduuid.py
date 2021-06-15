@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 
-from routes.models import Route, RouteArchive
+from routes.models import Route, RouteArchive, GradeScale
 
 logger = logging.getLogger('root')
 
@@ -28,3 +28,9 @@ class Command(BaseCommand):
             print("updtate route archive %s" % route.name)
             route.uuid = uuid.uuid4()
             route.save()
+        '''
+        grades = GradeScale.objects.all()
+        for grade in grades:
+            grade.uuid = uuid.uuid4()
+            grade.save()
+        '''

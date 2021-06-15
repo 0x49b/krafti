@@ -19,10 +19,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'django_filters',
     'colorfield',
+    'tinymce',
+
     'counter',
     'routes',
-    'climber'
+    # 'climber'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,5 +114,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
+    # 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }

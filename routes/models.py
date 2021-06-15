@@ -34,6 +34,11 @@ class GradeScale(models.Model):
     def __str__(self):
         return "%s" % self.french
 
+    def save(self, *args, **kwargs):
+        if not self.uuid or self.uuid is None:
+            self.uuid = uuid.uuid4()
+        return super().save(*args, **kwargs)
+
 
 class Category(models.Model):
     class Meta:
@@ -67,6 +72,7 @@ class Route(models.Model):
     route_num = models.CharField(max_length=4, null=False, blank=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(null=True, blank=True)
+    archived = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.uuid or self.uuid is None:
@@ -77,8 +83,7 @@ class Route(models.Model):
 
     def __str__(self):
         return "%s %s %s %s %s, %s, %s" % (
-            self.color, self.name, self.setter, self.date, self.length, self.route_num,
-            self.category.name)
+            self.color, self.name, self.setter, self.date, self.length, self.route_num, self.category.name)
 
 
 class RouteArchive(models.Model):
@@ -89,7 +94,7 @@ class RouteArchive(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
-    name = models.CharField(max_length=250, null=False, blank=False, unique=True)
+    name = models.CharField(max_length=250, null=False, blank=False)
     setter = models.CharField(max_length=25, null=False, blank=False)
     date = models.DateField(auto_now_add=False, auto_created=False, auto_now=False)
     length = models.IntegerField(null=False, blank=False)

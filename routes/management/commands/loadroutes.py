@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 tds = tr.findAll('td')
 
                 grade = tds[0].find('span').text.lstrip().rstrip()
-                print(grade)
+                # print(grade)
 
                 c = tds[0]['style']
                 color_raw = c.split(":")
@@ -48,7 +48,7 @@ class Command(BaseCommand):
                     grd = GradeScale.objects.get(Q(french__iexact=grade))
                     grds = GradeScale.objects.get(french=grade)
 
-                    print(grds)
+                    # print(grds)
 
                 except Exception as e:
                     grd = None
@@ -77,22 +77,24 @@ class Command(BaseCommand):
             i = i + 1
 
         # Check the db routes if they are currently active
-        logger.info("Checking routes active")
+        logger.info("Checking active routes")
         db_routes = Route.objects.all()
         for db_route in db_routes:
             if db_route.name not in loaded_routes:
-                RouteArchive.objects.create(
-                    uuid=db_route.uuid,
-                    grd=db_route.grd,
-                    color=db_route.color,
-                    name=db_route.name,
-                    setter=db_route.setter,
-                    date=db_route.date,
-                    length=db_route.length,
-                    route_num=db_route.route_num,
-                    category=db_route.category
-                )
+                db_route.archived = True
+                db_route.save()
 
-                db_route.delete()
+                if not RouteArchive.objects.filter(uuid=db_route.uuid).exists():
+                    RouteArchive.objects.create(
+                        uuid=db_route.uuid,
+                        grd=db_route.grd,
+                        color=db_route.color,
+                        name=db_route.name,
+                        setter=db_route.setter,
+                        date=db_route.date,
+                        length=db_route.length,
+                        route_num=db_route.route_num,
+                        category=db_route.category
+                    )
 
         logger.info("finished loading routes")

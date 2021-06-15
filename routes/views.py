@@ -1,8 +1,9 @@
 from datetime import datetime
-
+from rest_framework import filters
 from django.db.models import Q
 from django.shortcuts import render
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Route, RouteArchive, Category, GradeScale
 from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer
@@ -15,6 +16,9 @@ class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.all().order_by('-date')
     serializer_class = RouteSerializer
     http_method_names = ['get']
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['name', 'route_num', 'setter']
+    filterset_fields = ['route_num']
 
 
 class RouteArchiveViewSet(viewsets.ModelViewSet):

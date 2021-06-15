@@ -7,13 +7,14 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 from routes.models import Route
-from .models import Visits
+from .models import Visits, ModalInfo
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    rts = Route.objects.all().order_by('category')
+    rts = Route.objects.filter(archived=False).order_by('category')
+    info = ModalInfo.objects.filter(type="modal-html")
 
     cweek = datetime.today().isocalendar()[1]
     thisweekroutes = []
@@ -26,7 +27,7 @@ def index(request):
             lastweekroutes.append(rt)
 
     routes = [thisweekroutes, lastweekroutes]
-    return render(request, 'index.html', {'routes': routes})
+    return render(request, 'index.html', {'routes': routes, 'modalinfo': info[0].info})
 
 
 def get_daydata(request):

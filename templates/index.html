@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'owl/assets/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'font/stylesheet.css' %}">
 
+
     <style>
         body {
             padding-top: 70px
@@ -217,27 +218,11 @@
                 <h5 class="modal-title" id="exampleModalLabel">Informationen zum Besuch</h5>
             </div>
             <div class="modal-body">
-               
 
-Ab Montag, den 31. Mai 2021 dürfen wir folgende Lockerungen in der Kletteranlage Kraftreaktor vornehmen:
+                <div class="text-start ">
+                    {{ modalinfo | safe }}
+                </div>
 
- <ul class="text-start">
-<li>186 Personen dürfen sich gleichzeitig in der Halle aufhalten.</li>
-<li>Je nach Auslastung gibt es keine Beschränkung der Aufenthaltsdauer. </li>
-<li>Die Duschen sind wieder geöffnet. </li>
-<li>Im Sitzen kann der Kaffee wieder in der Halle genossen werden (max. 4 Personen dürfen zusammensitzen). </li>
-</ul>
-Weiterhin gilt:
-<ul class="test-start">
-<li>Abstand einhalten. </li>
-<li>Bitte verteilt euch eigenverantwortlich und verlasst Bereiche die voll belegt sind. </li>
-<li>Hygieneregeln des BAG einhalten. </li>
-<li>Maskenpflicht in der Halle während dem Klettern, Bouldern oder Trainieren. </li>
-<li>Flüssigmagnesia benutzen oder die Hände regelmässig desinfizieren. </li>
-<li>Konsequent ein- und auschecken. </li>
-<li>Das Wichtigste: Ein korrektes Sicherungsverhalten und Partnercheck vollständig und einwandfrei durchführen. </li>
-
-                </ul>
                 <button type="button" id="close-modal" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>

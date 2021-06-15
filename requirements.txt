@@ -32,3 +32,5 @@ uritemplate==3.0.1
 urllib3==1.26.5
 whitenoise==5.2.0
 yarg==0.1.9
+django-filter==2.4.0
+django-tinymce==3.3.0
