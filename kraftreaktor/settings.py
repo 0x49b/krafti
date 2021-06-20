@@ -22,10 +22,11 @@ INSTALLED_APPS = [
     'django_filters',
     'colorfield',
     'tinymce',
+    'location_field.apps.DefaultConfig',
 
     'counter',
     'routes',
-    # 'climber'
+    'climber'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,3 +118,5 @@ REST_FRAMEWORK = {
     # 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczFndCJ9.WovWxlPOYsXXiIiPJeeiGA"
