@@ -59,7 +59,7 @@ class Command(BaseCommand):
                     cat = None
 
                 route, created = Route.objects.update_or_create(
-                    grd=grd,
+                    grade=grd,
                     color=color,
                     name=name,
                     setter=setter,
@@ -87,7 +87,7 @@ class Command(BaseCommand):
                 if not RouteArchive.objects.filter(uuid=db_route.uuid).exists():
                     RouteArchive.objects.create(
                         uuid=db_route.uuid,
-                        grd=db_route.grd,
+                        grd=db_route.grade,
                         color=db_route.color,
                         name=db_route.name,
                         setter=db_route.setter,

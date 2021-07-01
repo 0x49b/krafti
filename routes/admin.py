@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from .models import Route, RouteArchive, Category, GradeScale
+from .models import Route, RouteArchive, Category, GradeScale, RouteSetter, RouteSetterNickname
+
+
+class RouteSetterNicknameAdmin(admin.ModelAdmin):
+    list_display = ('nickname',)
+
+
+class RouteSetterAdmin(admin.ModelAdmin):
+    list_display = ('lastname', 'firstname')
 
 
 class GradeScaleAdmin(admin.ModelAdmin):
@@ -18,6 +26,7 @@ class GradeScaleAdmin(admin.ModelAdmin):
                     )
     ordering = ['id']
 
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug')
 
@@ -25,7 +34,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class RouteAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'grd',
+        'grade',
         'color',
         'setter',
         'date',
@@ -35,8 +44,8 @@ class RouteAdmin(admin.ModelAdmin):
         'slug',
     )
 
-    list_filter = ('grd', 'length', 'category')
-    search_fields = ('name', 'grd', 'length', 'date')
+    list_filter = ('grade', 'length', 'category')
+    search_fields = ('name', 'grade', 'length', 'date')
 
 
 class RouteArchiveAdmin(admin.ModelAdmin):
@@ -60,3 +69,5 @@ admin.site.register(GradeScale, GradeScaleAdmin)
 admin.site.register(Route, RouteAdmin)
 admin.site.register(RouteArchive, RouteArchiveAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(RouteSetter, RouteSetterAdmin)
+admin.site.register(RouteSetterNickname, RouteSetterNicknameAdmin)

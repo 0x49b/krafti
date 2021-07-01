@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'colorfield',
     'tinymce',
     'location_field.apps.DefaultConfig',
+    'drf_multiple_model',
 
     'counter',
     'routes',

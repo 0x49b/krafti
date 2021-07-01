@@ -15,6 +15,33 @@ class GradeScaleCategory(models.Model):
         return self.name
 
 
+class RouteSetter(models.Model):
+    class Meta:
+        verbose_name = "Route Setter"
+        verbose_name_plural = "Route Setters"
+
+    lastname = models.CharField(max_length=255, blank=False, null=False)
+    firstname = models.CharField(max_length=255, blank=False, null=False)
+    nickname = models.ManyToManyField('RouteSetterNickname')
+    img_url = models.URLField(blank=True, null=True)
+    since = models.IntegerField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return "%s %s" % (self.firstname, self.lastname)
+
+
+class RouteSetterNickname(models.Model):
+    class Meta:
+        verbose_name = "Route Setter Nickname"
+        verbose_name_plural = "Route Setter Nicknames"
+
+    nickname = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.nickname
+
+
 class GradeScale(models.Model):
     class Meta:
         verbose_name = "Grad Skala"
@@ -63,7 +90,7 @@ class Route(models.Model):
         verbose_name_plural = "Routen"
 
     uuid = models.UUIDField(default=uuid.uuid4(), editable=False, null=True)
-    grd = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
+    grade = models.ForeignKey(GradeScale, null=True, on_delete=models.SET_NULL, verbose_name="Grade")
     color = ColorField(null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
     setter = models.CharField(max_length=25, null=False, blank=False)

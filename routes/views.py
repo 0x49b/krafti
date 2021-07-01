@@ -4,9 +4,20 @@ from django.db.models import Q
 from django.shortcuts import render
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-
 from .models import Route, RouteArchive, Category, GradeScale
-from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer
+from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer, AllRoutesSerializer
+
+
+class AllRouteViewSet(viewsets.ModelViewSet):
+    """
+       API Endpoint to view routes
+       """
+    queryset = Route.objects.all().order_by('-date')
+    serializer_class = AllRoutesSerializer
+    http_method_names = ['get']
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['name', 'route_num', 'setter']
+    filterset_fields = ['route_num']
 
 
 class RouteViewSet(viewsets.ModelViewSet):
@@ -53,8 +64,7 @@ def testRouteList(request):
 
     cweek = datetime.today().isocalendar()[1]
 
-    weeks = []
-    weeks.append(cweek)
+    weeks = [cweek]
     thisweekroutes = []
     lastweekroutes = []
 
@@ -64,9 +74,7 @@ def testRouteList(request):
         if rt.date.isocalendar()[1] == cweek - 1:
             lastweekroutes.append(rt)
 
-    routes = []
-    routes.append(thisweekroutes)
-    routes.append(lastweekroutes)
+    routes = [thisweekroutes, lastweekroutes]
 
     return render(request, 'routetest.html', {'routes': routes})
 

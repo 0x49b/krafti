@@ -1,12 +1,11 @@
 from rest_framework import serializers
-
 from .models import Route, RouteArchive, Category, GradeScale
 
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
-        fields = ['uuid', 'grd', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug', 'archived', 'url']
+        fields = ['uuid', 'grade', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'category', 'slug', 'archived', 'url']
 
 
 class RouteArchiveSerializer(serializers.ModelSerializer):
@@ -27,3 +26,12 @@ class GradeScaleSerializer(serializers.ModelSerializer):
         model = GradeScale
         fields = ['id', 'url', 'yds', 'british_tech', 'british_adj', 'french', 'uiaa', 'australia', 'saxon',
                   'scandinavia', 'brasil', 'fontainebleu']
+
+
+class AllRoutesSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=False, many=False)
+    grade = GradeScaleSerializer(read_only=False, many=False)
+
+    class Meta:
+        model = Route
+        fields = ['uuid', 'color', 'name', 'setter', 'date', 'length', 'route_num', 'grade', 'category', 'slug', 'archived', 'url']
