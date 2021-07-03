@@ -43,20 +43,21 @@ class Command(BaseCommand):
                 route_num = tds[5].text.lstrip().rstrip()
                 categorie = i + 1
 
-                loaded_routes.append(name)
                 try:
-                    grd = GradeScale.objects.get(Q(french__iexact=grade))
-                    grds = GradeScale.objects.get(french=grade)
-
-                    # print(grds)
-
+                    grd = GradeScale.objects.filter(Q(french__iexact=grade)).first()
                 except Exception as e:
+                    print(e)
                     grd = None
 
                 try:
                     cat = Category.objects.get(id=categorie)
                 except Exception as e:
                     cat = None
+
+                if name == "":
+                    name = "#%s" % grd.french
+
+                loaded_routes.append(name)
 
                 route, created = Route.objects.update_or_create(
                     grade=grd,
@@ -70,9 +71,9 @@ class Command(BaseCommand):
                 )
 
                 if created:
-                    logger.info("Added new Route %s" % route)
+                    logger.info("Added new Route %s with Grade %s" % (route, route.grade.french))
                 else:
-                    logger.info("Got Route %s " % route)
+                    logger.info("Got Route %s with Grade %s" % (route, route.grade.french))
 
             i = i + 1
 
