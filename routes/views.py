@@ -12,7 +12,7 @@ class AllRouteViewSet(viewsets.ModelViewSet):
     """
        API Endpoint to view routes
        """
-    queryset = Route.objects.filter(archived=False).order_by('-date')
+    queryset = Route.objects.all().order_by('-date')
     serializer_class = AllRoutesSerializer
     http_method_names = ['get']
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
@@ -24,7 +24,7 @@ class RouteViewSet(viewsets.ModelViewSet):
     """
     API Endpoint to view routes
     """
-    queryset = Route.objects.all().order_by('-date')
+    queryset = Route.objects.filter(archived=False).order_by('-date')
     serializer_class = RouteSerializer
     http_method_names = ['get']
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
