@@ -99,7 +99,7 @@
 
 <div class="card m-auto text-start" style="max-width: 36rem;">
     <div class="card-body">
-        <form id="chartSelect" class="row row-cols-lg-auto g-3 align-items-center">
+        <!--form id="chartSelect" class="row row-cols-lg-auto g-3 align-items-center">
             <div class="col-4 col-sm-4">
                 <label for="timebox">Auslastung der letzten</label>
             </div>
@@ -113,7 +113,7 @@
                 </select>
             </div>
         </form>
-        <canvas id="myChart" class="card-img-top mb-custom"></canvas>
+        <canvas id="myChart" class="card-img-top mb-custom"></canvas-->
         <div class="col-12">
             <div id="trend-data">
 
@@ -326,7 +326,7 @@
             }
 
 
-            var ctx = document.getElementById('myChart').getContext('2d');
+            /*var ctx = document.getElementById('myChart').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -354,7 +354,7 @@
                         }]
                     }
                 }
-            });
+            });*/
             syncbox.classList.remove("fa-spin")
         });
     }
