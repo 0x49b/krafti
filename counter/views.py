@@ -5,11 +5,22 @@ import pytz
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
-
 from routes.models import Route
 from .models import Visits, ModalInfo
+from rest_framework import viewsets
+from .serializers import VisitSerializer
+
 
 logger = logging.getLogger(__name__)
+
+
+class LastCounterViewSet(viewsets.ModelViewSet):
+    """
+    API Endpoint to receive the last visit number
+    """
+    queryset = Visits.objects.all().order_by('-added')[:11]
+    serializer_class = VisitSerializer
+    http_method_names = ['get']
 
 
 def index(request):

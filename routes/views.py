@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from rest_framework import filters
 from django.db.models import Q
@@ -5,7 +6,10 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Route, RouteArchive, Category, GradeScale
-from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer, AllRoutesSerializer
+from .serializers import RouteSerializer, RouteArchiveSerializer, CategorySerializer, GradeScaleSerializer, \
+    AllRoutesSerializer
+
+logger = logging.getLogger(__name__)
 
 
 class AllRouteViewSet(viewsets.ModelViewSet):

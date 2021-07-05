@@ -28,6 +28,7 @@ router.register(r'routes-archive', routes.RouteArchiveViewSet)
 router.register(r'categories', routes.CategoryViewSet)
 router.register(r'grade-scales', routes.GradeScaleViewSet)
 router.register(r'all-routes', routes.AllRouteViewSet)
+router.register(r'last-visit', counter.LastCounterViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
