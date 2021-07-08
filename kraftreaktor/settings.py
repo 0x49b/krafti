@@ -27,7 +27,8 @@ INSTALLED_APPS = [
 
     'counter',
     'routes',
-    'climber'
+    'climber',
+    'meta'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

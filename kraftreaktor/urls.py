@@ -8,6 +8,7 @@ from drf_yasg import openapi
 
 from counter import views as counter
 from routes import views as routes
+from meta import views as meta
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -24,11 +25,10 @@ schema_view = get_schema_view(
 
 router = routers.DefaultRouter()
 router.register(r'routes', routes.RouteViewSet)
-router.register(r'routes-archive', routes.RouteArchiveViewSet)
 router.register(r'categories', routes.CategoryViewSet)
 router.register(r'grade-scales', routes.GradeScaleViewSet)
-router.register(r'all-routes', routes.AllRouteViewSet)
 router.register(r'last-visit', counter.LastCounterViewSet)
+router.register(r'opening-hours', meta.OpeningHoursViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,8 +36,6 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('', counter.index, name='counter-index'),
     path('get-daydata/', counter.get_daydata, name='counter-daydata'),
-    path('route-test/', routes.testRouteList, name='routes-test'),
-    path('grade-test/', routes.gradetest, name='routes-grade-test'),
 
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
