@@ -26,8 +26,8 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register(r'routes', routes.RouteViewSet)
 router.register(r'categories', routes.CategoryViewSet)
-router.register(r'grade-scales', routes.GradeScaleViewSet)
-router.register(r'last-visit', counter.LastCounterViewSet)
+router.register(r'grades', routes.GradeScaleViewSet)
+router.register(r'visits', counter.LastCounterViewSet)
 router.register(r'opening-hours', meta.OpeningHoursViewSet)
 
 urlpatterns = [

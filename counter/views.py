@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 class LastCounterViewSet(viewsets.ModelViewSet):
     """
-    API Endpoint to receive the last visit number
+    API Endpoint to receive the last 11 visit number
     """
     queryset = Visits.objects.all().order_by('-added')[:11]
     serializer_class = VisitSerializer
