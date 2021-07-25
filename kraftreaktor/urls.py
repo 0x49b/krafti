@@ -29,6 +29,7 @@ router.register(r'categories', routes.CategoryViewSet)
 router.register(r'grades', routes.GradeScaleViewSet)
 router.register(r'visits', counter.LastCounterViewSet)
 router.register(r'opening-hours', meta.OpeningHoursViewSet)
+router.register(r'current-grades', routes.CurrentGradesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
