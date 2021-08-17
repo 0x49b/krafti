@@ -161,7 +161,7 @@
                         <img src="{% static 'images/loader.gif' %}">
                     </span>
 
-                    <span class="mt-3 dot dot-{{ toppas.done|lower }}" id="{{ toppas.category.id }}_{{ toppas.number }}"
+                    <span class="mt-3 dot" id="{{ toppas.category.id }}_{{ toppas.number }}"
                           onclick="toggleDot('{{ toppas.category.id }}_{{ toppas.number }}', {{ toppas.done |lower }}, {{ toppas.id }})"></span>
                 </li>
             {% endfor %}
