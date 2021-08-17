@@ -373,7 +373,14 @@
         '3_5', '3_15', '3_20', '3_10',
     ]
 
-    let baseurl = 'http://' + window.location.hostname + ":8000/api/v1";
+    console.log(window.location.hostname);
+    let baseurl = "http://" + window.location.hostname + ":8000" + "/api/v1";
+
+    if (window.location.hostname !== "127.0.0.1") {
+        baseurl = "https://" + window.location.hostname + "/api/v1";
+    }
+
+
     let currentId = 0;
     let currentRoute = "0_0";
 
