@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trophy</title>
+
+    <link rel="manifest" href="{% static 'kr.webmanifest' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --vorstieg: #afc5d5;
+            --vorstieg-dark: #8595a4;
+            --toprope: #E17E9F;
+            --toprope-dark: #a65d74;
+            --selbstsicherung: #79B39D;
+            --selbstsicherung-dark: #547f6f;
+        }
+
+        .vorstieg {
+            background-color: var(--vorstieg);
+        }
+
+        .route.vorstieg:hover {
+            background-color: var(--vorstieg-dark);
+            color: #dedede;
+        }
+
+        .toprope {
+            background-color: var(--toprope);
+        }
+
+        .route.toprope:hover {
+            background-color: var(--toprope-dark);
+            color: #dedede;
+        }
+
+        .selbstsicherung {
+            background-color: var(--selbstsicherung);
+        }
+
+        .route.selbstsicherung:hover {
+            background-color: var(--selbstsicherung-dark);
+            color: #dedede;
+        }
+
+
+        .route {
+            text-align: center;
+            max-width: 10px;
+            cursor: pointer;
+        }
+
+
+        .category {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td>D/R</td>
+                <td>Route 1-10</td>
+                <td>Route 11-20</td>
+                <td>Route 21-30</td>
+                <td>Route 31-40</td>
+            </tr>
+            <tr class="vorstieg">
+                <td class="category">Vorstieg</td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route vorstieg">1</td>
+                            <td class="route vorstieg">2</td>
+                            <td class="route vorstieg">3</td>
+                            <td class="route vorstieg">4</td>
+                            <td class="route vorstieg">5</td>
+                        </tr>
+                        <tr>
+                            <td class="route vorstieg">6</td>
+                            <td class="route vorstieg">7</td>
+                            <td class="route vorstieg">8</td>
+                            <td class="route vorstieg">9</td>
+                            <td class="route vorstieg">10</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route vorstieg">11</td>
+                            <td class="route vorstieg">12</td>
+                            <td class="route vorstieg">13</td>
+                            <td class="route vorstieg">14</td>
+                            <td class="route vorstieg">15</td>
+                        </tr>
+                        <tr>
+                            <td class="route vorstieg">16</td>
+                            <td class="route vorstieg">17</td>
+                            <td class="route vorstieg">18</td>
+                            <td class="route vorstieg">19</td>
+                            <td class="route vorstieg">20</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route vorstieg">21</td>
+                            <td class="route vorstieg">22</td>
+                            <td class="route vorstieg">23</td>
+                            <td class="route vorstieg">24</td>
+                            <td class="route vorstieg">25</td>
+                        </tr>
+                        <tr>
+                            <td class="route vorstieg">26</td>
+                            <td class="route vorstieg">27</td>
+                            <td class="route vorstieg">28</td>
+                            <td class="route vorstieg">29</td>
+                            <td class="route vorstieg">30</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route vorstieg">31</td>
+                            <td class="route vorstieg">32</td>
+                            <td class="route vorstieg">33</td>
+                            <td class="route vorstieg">34</td>
+                            <td class="route vorstieg">35</td>
+                        </tr>
+                        <tr>
+                            <td class="route vorstieg">36</td>
+                            <td class="route vorstieg">37</td>
+                            <td class="route vorstieg">38</td>
+                            <td class="route vorstieg">39</td>
+                            <td class="route vorstieg">40</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="toprope">
+                <td class="category">Toprope</td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route toprope">1</td>
+                            <td class="route toprope">2</td>
+                            <td class="route toprope">3</td>
+                            <td class="route toprope">4</td>
+                            <td class="route toprope">5</td>
+                        </tr>
+                        <tr>
+                            <td class="route toprope">6</td>
+                            <td class="route toprope">7</td>
+                            <td class="route toprope">8</td>
+                            <td class="route toprope">9</td>
+                            <td class="route toprope">10</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route toprope">11</td>
+                            <td class="route toprope">12</td>
+                            <td class="route toprope">13</td>
+                            <td class="route toprope">14</td>
+                            <td class="route toprope">15</td>
+                        </tr>
+                        <tr>
+                            <td class="route toprope">16</td>
+                            <td class="route toprope">17</td>
+                            <td class="route toprope">18</td>
+                            <td class="route toprope">19</td>
+                            <td class="route toprope">20</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route toprope">21</td>
+                            <td class="route toprope">22</td>
+                            <td class="route toprope">23</td>
+                            <td class="route toprope">24</td>
+                            <td class="route toprope">25</td>
+                        </tr>
+                        <tr>
+                            <td class="route toprope">26</td>
+                            <td class="route toprope">27</td>
+                            <td class="route toprope">28</td>
+                            <td class="route toprope">29</td>
+                            <td class="route toprope">30</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route toprope">31</td>
+                            <td class="route toprope">32</td>
+                            <td class="route toprope">33</td>
+                            <td class="route toprope">34</td>
+                            <td class="route toprope">35</td>
+                        </tr>
+                        <tr>
+                            <td class="route toprope">36</td>
+                            <td class="route toprope">37</td>
+                            <td class="route toprope">38</td>
+                            <td class="route toprope">39</td>
+                            <td class="route toprope">40</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="selbstsicherung">
+                <td class="category">Selbstsicherung</td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_1')">1</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_2')">2</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_3')">3</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_4')">4</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_5')">5</td>
+                        </tr>
+                        <tr>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_6')">6</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_7')">7</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_8')">8</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_9')">9</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_10')">10</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_11')">11</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_12')">12</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_13')">13</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_14')">14</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_15')">15</td>
+                        </tr>
+                        <tr>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_16')">16</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_17')">17</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_18')">18</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_19')">19</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_20')">20</td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="routeModal" tabindex="-1" aria-labelledby="routeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="routeModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <td>Disziplin:</td>
+                        <td id="routeModalDiscipline"></td>
+                    </tr>
+                    <tr>
+                        <td>Nummer:</td>
+                        <td id="routeModalNumber"></td>
+                    </tr>
+                    <tr>
+                        <td>Rotpunkt:</td>
+                        <td>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="routeModalDone">
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div-->
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+<script>
+
+    // https://files.softicons.com/download/application-icons/free-developer-icons-by-designkode/png/32/checkmark.png
+
+    let baseurl = 'http://' + window.location.hostname + ":8000/api/v1";
+    var currentId = 0;
+    var currentRoute = "0_0";
+
+    let routeModal = new bootstrap.Modal(document.getElementById('routeModal'), {})
+    let modalCB = document.getElementById('routeModalDone');
+
+    modalCB.addEventListener('change', e => {
+
+        console.log(e.target.checked);
+
+        let resource = "/trophy-routes/" + currentId + "/";
+        let data = {"done": e.target.checked};
+
+        doPut(resource, JSON.stringify(data), (err, data) => {
+            if (err != null) {
+                //console.error(err)
+            } else {
+                currentId = 0;
+                currentRoute = "0_0";
+
+            }
+            routeModal.hide();
+        })
+    })
+
+    function displayRoute(route) {
+        let identifier = route.split('_')
+        let resource = "/trophy-routes/?category=" + identifier[0] + "&number=" + identifier[1];
+        doGet(resource, (err, data) => {
+            if (err != null) {
+                console.error(err);
+            } else {
+                console.log(data);
+
+                if (data.length > 0) {
+                    currentId = data[0].id;
+                    currentRoute = route;
+
+                    document.getElementById('routeModalTitle').innerText = "Route: " + data[0].route.name;
+                    document.getElementById('routeModalDiscipline').innerText = data[0].category.name;
+                    document.getElementById('routeModalNumber').innerText = data[0].number;
+                    let doneCB = document.getElementById('routeModalDone');
+                    doneCB.checked = !!Boolean(data[0].done);
+                    routeModal.show()
+                }
+            }
+        })
+    }
+
+
+    function doGet(resource, callback) {
+        let url = baseurl + resource;
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            let status = xhr.status;
+            let message = xhr.statusText;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                let error = {
+                    "status": status,
+                    "message": message
+                };
+                callback(error, xhr.response);
+            }
+        };
+        xhr.send();
+    }
+
+    function doPost(resource, data, callback) {
+        let url = baseurl + resource;
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.onload = function () {
+            let status = xhr.status;
+            let message = xhr.statusText;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                let error = {
+                    "status": status,
+                    "message": message
+                };
+                callback(error, xhr.response);
+            }
+        };
+        xhr.send(data);
+    }
+
+    function doPut(resource, data, callback) {
+        let url = baseurl + resource;
+        let xhr = new XMLHttpRequest();
+        xhr.open('PUT', url, true);
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.onload = function () {
+            let status = xhr.status;
+            let message = xhr.statusText;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                let error = {
+                    "status": status,
+                    "message": message
+                };
+                callback(error, xhr.response);
+            }
+        };
+        xhr.send(data);
+    }
+</script>
+
+</body>
+</html>

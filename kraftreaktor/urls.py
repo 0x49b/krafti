@@ -9,6 +9,7 @@ from drf_yasg import openapi
 from counter import views as counter
 from routes import views as routes
 from meta import views as meta
+from trophy import views as trophy
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -30,8 +31,11 @@ router.register(r'grades', routes.GradeScaleViewSet)
 router.register(r'visits', counter.LastCounterViewSet)
 router.register(r'opening-hours', meta.OpeningHoursViewSet)
 router.register(r'current-grades', routes.CurrentGradesViewSet)
+router.register(r'trophy-routes', trophy.TrophyRouteViewSet)
+router.register(r'trophy-categories', trophy.TrophyCategoryViewSet)
 
 urlpatterns = [
+    path('trophy/', include('trophy.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include(router.urls)),

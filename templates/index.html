@@ -324,37 +324,6 @@
                 $("#close-alert").html("<i class=\"fas fa-lock text-danger\"></i> <span>Aktuell Geschlossen bis " + dta['permanent_closed_date'] + "</span>")
                 $("#closed").show()
             }
-
-
-            /*var ctx = document.getElementById('myChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dta['daydata'],
-                    datasets: [{
-                        label: '# Besucher',
-                        data: dta['daydata'],
-                        borderColor: 'rgba(30,101,255,1.0)',
-                        backgroundColor: 'rgba(30,101,255,0.2)',
-                        borderWidth: 1,
-                        fill: true,
-                        pointBackgroundColor: 'rgba(30,101,255,1.0)',
-                        pointRadius: 1,
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                suggestedMin: 0,
-                                suggestedMax: 124,
-                                stepSize: 124 % 12
-                            }
-                        }]
-                    }
-                }
-            });*/
             syncbox.classList.remove("fa-spin")
         });
     }

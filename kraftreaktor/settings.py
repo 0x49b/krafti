@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'counter',
     'routes',
     'climber',
-    'meta'
+    'meta',
+    'trophy'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -115,10 +116,9 @@ LOGGING = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny'
     ],
-    # 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczFndCJ9.WovWxlPOYsXXiIiPJeeiGA"

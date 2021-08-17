@@ -109,8 +109,7 @@ class Route(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return "%s %s %s %s %s, %s, %s" % (
-            self.color, self.name, self.setter, self.date, self.length, self.route_num, self.category.name)
+        return self.name
 
 
 class RouteArchive(models.Model):
