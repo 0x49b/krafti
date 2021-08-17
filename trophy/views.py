@@ -15,8 +15,10 @@ class TrophyRouteViewSet(viewsets.ModelViewSet):
     queryset = TrophyRoute.objects.all().order_by('number')
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category', 'number']
+    http_method_names = ['get', 'put']
 
 
 class TrophyCategoryViewSet(viewsets.ModelViewSet):
     queryset = TrophyCategory.objects.all()
     serializer_class = TrophyCategorySerializer
+    http_method_names = ['get']

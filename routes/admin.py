@@ -44,7 +44,7 @@ class RouteAdmin(admin.ModelAdmin):
         'slug',
     )
 
-    list_filter = ('grade', 'length', 'category')
+    list_filter = ('grade', 'length', 'category', 'archived')
     search_fields = ('name', 'grade', 'length', 'date')
 
 

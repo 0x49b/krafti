@@ -8,7 +8,9 @@ class TrophyCategoryAdmin(admin.ModelAdmin):
 
 
 class TrophyRouteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'number', 'category', 'route')
+    list_display = ('number', 'category', 'route')
+    list_filter = ('category', )
+    ordering = ('number',)
 
 
 admin.site.register(TrophyCategory, TrophyCategoryAdmin)

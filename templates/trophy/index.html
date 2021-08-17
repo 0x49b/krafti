@@ -15,6 +15,7 @@
     <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'font/stylesheet.css' %}">
 
     <style>
         :root {
@@ -64,6 +65,39 @@
         .category {
             vertical-align: middle;
         }
+
+
+        .grad {
+            padding: 0;
+            display: table-cell;
+            overflow: hidden;
+            height: 3.5em;
+            width: 3.5em;
+            border-radius: 4px;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+        }
+
+        .grad_outer {
+            overflow: hidden;
+        }
+
+        .grad-span {
+            position: relative;
+            display: inline-block;
+            font-family: 'stolzlbold', sans-serif;
+            font-size: 1.4em;
+            transform: rotate(-90deg);
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #1D1D1D;
+        }
+
+        .form-switch .form-check-input[type=checkbox] {
+            border-radius: 2em;
+            height: 20px;
+            width: 40px;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +105,7 @@
 
 <div class="container">
     <div class="row">
-        <table class="table">
+        <table class="table table-responsive">
             <tr>
                 <td>D/R</td>
                 <td>Route 1-10</td>
@@ -79,7 +113,7 @@
                 <td>Route 21-30</td>
                 <td>Route 31-40</td>
             </tr>
-            <tr class="vorstieg">
+            <!--tr class="vorstieg">
                 <td class="category">Vorstieg</td>
                 <td>
                     <table class="table table-bordered">
@@ -228,42 +262,45 @@
                         </tr>
                     </table>
                 </td>
-            </tr>
+            </tr-->
             <tr class="selbstsicherung">
                 <td class="category">Selbstsicherung</td>
                 <td>
                     <table class="table table-bordered">
                         <tr>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_1')">1</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_2')">2</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_3')">3</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_4')">4</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_5')">5</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_1')" id="3_1">1</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_2')" id="3_2">2</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_3')" id="3_3">3</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_4')" id="3_4">4</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_5')" id="3_5">5</td>
                         </tr>
                         <tr>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_6')">6</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_7')">7</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_8')">8</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_9')">9</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_10')">10</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_6')" id="3_6">6</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_7')" id="3_7">7</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_8')" id="3_8">8</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_9')" id="3_9">9</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_10')" id="3_10">10</td>
                         </tr>
                     </table>
                 </td>
                 <td>
                     <table class="table table-bordered">
                         <tr>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_11')">11</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_12')">12</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_13')">13</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_14')">14</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_15')">15</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_11')" id="3_11">11</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_12')" id="3_12">12</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_13')" id="3_13">13</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_14')" id="3_14">14</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_15')" id="3_15">15</td>
                         </tr>
                         <tr>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_16')">16</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_17')">17</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_18')">18</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_19')">19</td>
-                            <td class="route selbstsicherung" onclick="displayRoute('3_20')">20</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_16')" id="3_16">16</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_17')" id="3_17">17</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_18')" id="3_18">18</td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_19')" id="3_19">
+                                19
+
+                            </td>
+                            <td class="route selbstsicherung" onclick="displayRoute('3_20')" id="3_20">20</td>
                         </tr>
                     </table>
                 </td>
@@ -283,30 +320,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <tr>
-                        <td>Disziplin:</td>
-                        <td id="routeModalDiscipline"></td>
-                    </tr>
-                    <tr>
-                        <td>Nummer:</td>
-                        <td id="routeModalNumber"></td>
-                    </tr>
-                    <tr>
-                        <td>Rotpunkt:</td>
-                        <td>
 
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="routeModalDone">
+                <div class="row">
+
+                    <div class="col-2">
+
+                        <div class="grad" id="routeModalGradeOuter">
+                            <div class="grad_outer">
+                                <span id="routeModalGrade" class="grad-span"></span>
                             </div>
+                        </div>
 
-                        </td>
-                    </tr>
-                </table>
+                    </div>
+                    <div class="col-10">
+                        <table class="table">
+                            <tr>
+                                <td>Disziplin:</td>
+                                <td id="routeModalDiscipline"></td>
+                            </tr>
+                            <tr>
+                                <td>Nummer:</td>
+                                <td id="routeModalNumber"></td>
+                            </tr>
+                            <tr>
+                                <td>Rotpunkt:</td>
+                                <td>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" value="" id="routeModalDone">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!--div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div-->
         </div>
     </div>
 </div>
@@ -317,14 +365,56 @@
         crossorigin="anonymous"></script>
 <script>
 
-    // https://files.softicons.com/download/application-icons/free-developer-icons-by-designkode/png/32/checkmark.png
+    const routes = [
+        '3_19', '3_11', '3_16', '3_6',
+        '3_2', '3_12', '3_17', '3_7',
+        '3_3', '3_13', '3_18', '3_8',
+        '3_4', '3_14', '3_9', '3_1',
+        '3_5', '3_15', '3_20', '3_10',
+    ]
 
     let baseurl = 'http://' + window.location.hostname + ":8000/api/v1";
-    var currentId = 0;
-    var currentRoute = "0_0";
+    let currentId = 0;
+    let currentRoute = "0_0";
 
     let routeModal = new bootstrap.Modal(document.getElementById('routeModal'), {})
     let modalCB = document.getElementById('routeModalDone');
+
+
+    function checkReddot() {
+        routes.forEach((route) => {
+                let identifier = route.split('_')
+                let resource = "/trophy-routes/?category=" + identifier[0] + "&number=" + identifier[1];
+                doGet(resource, (err, data) => {
+                    if (err != null) {
+
+                    } else {
+                        document.getElementById(route).innerHTML = identifier[1];
+
+                        if (data.length > 0) {
+                            if (data[0].done) {
+                                document.getElementById(route).innerHTML = "<img alt=\"checkmark\" src=\"{% static 'images/checkmark.png' %}\" height=\"20px\" width=\"auto\">";
+                            }
+                        }
+                    }
+                })
+            }
+        )
+    }
+
+
+    window.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc");
+        } else {
+            isEscape = (evt.keyCode === 27);
+        }
+        if (isEscape) {
+            routeModal.hide();
+        }
+    }
 
     modalCB.addEventListener('change', e => {
 
@@ -339,11 +429,17 @@
             } else {
                 currentId = 0;
                 currentRoute = "0_0";
-
             }
-            routeModal.hide();
+            checkReddot()
+            setTimeout(() => {
+                routeModal.hide();
+
+            }, 10)
+
         })
     })
+
+    checkReddot()
 
     function displayRoute(route) {
         let identifier = route.split('_')
@@ -361,6 +457,9 @@
                     document.getElementById('routeModalTitle').innerText = "Route: " + data[0].route.name;
                     document.getElementById('routeModalDiscipline').innerText = data[0].category.name;
                     document.getElementById('routeModalNumber').innerText = data[0].number;
+                    document.getElementById('routeModalGrade').innerText = data[0].route.grade.french;
+                    document.getElementById('routeModalGradeOuter').style.backgroundColor = data[0].route.color;
+
                     let doneCB = document.getElementById('routeModalDone');
                     doneCB.checked = !!Boolean(data[0].done);
                     routeModal.show()
@@ -391,12 +490,14 @@
         xhr.send();
     }
 
-    function doPost(resource, data, callback) {
+
+    function doPut(resource, data, callback) {
         let url = baseurl + resource;
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
+        xhr.open('PUT', url, true);
         xhr.responseType = 'json';
         xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'))
         xhr.onload = function () {
             let status = xhr.status;
             let message = xhr.statusText;
@@ -413,26 +514,21 @@
         xhr.send(data);
     }
 
-    function doPut(resource, data, callback) {
-        let url = baseurl + resource;
-        let xhr = new XMLHttpRequest();
-        xhr.open('PUT', url, true);
-        xhr.responseType = 'json';
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.onload = function () {
-            let status = xhr.status;
-            let message = xhr.statusText;
-            if (status === 200) {
-                callback(null, xhr.response);
-            } else {
-                let error = {
-                    "status": status,
-                    "message": message
-                };
-                callback(error, xhr.response);
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
-        };
-        xhr.send(data);
+        }
+        return cookieValue;
     }
 </script>
 
