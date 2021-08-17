@@ -373,7 +373,7 @@
         '3_5', '3_15', '3_20', '3_10',
     ]
 
-    console.log(window.location.hostname);
+    // console.log(window.location.hostname);
     let baseurl = "http://" + window.location.hostname + ":8000" + "/api/v1";
 
     if (window.location.hostname !== "127.0.0.1") {
@@ -425,7 +425,7 @@
 
     modalCB.addEventListener('change', e => {
 
-        console.log(e.target.checked);
+        // console.log(e.target.checked);
 
         let resource = "/trophy-routes/" + currentId + "/";
         let data = {"done": e.target.checked};
@@ -455,7 +455,7 @@
             if (err != null) {
                 console.error(err);
             } else {
-                console.log(data);
+                // console.log(data);
 
                 if (data.length > 0) {
                     currentId = data[0].id;
