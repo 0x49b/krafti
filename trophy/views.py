@@ -5,9 +5,10 @@ from .serializers import TrophyRouteSerializer, TrophyCategorySerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-def index(request):
+def trophy(request):
     selbstsicherung = TrophyRoute.objects.filter(category_id=3).order_by('number')
     return render(request, 'trophy/index.html', {'selbstsicherung': selbstsicherung})
+
 
 
 class TrophyRouteViewSet(viewsets.ModelViewSet):
