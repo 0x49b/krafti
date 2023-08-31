@@ -34,12 +34,14 @@ class CurrentGradesViewSet(viewsets.ModelViewSet):
     """
     API Endpoint top get only current Grades in not archived routes (Can be used for filters)
     """
+
     rtes = Route.objects.filter(archived=False)
     grd = []
+    """
     for rt in rtes:
 
         if rt.grade.french not in grd:
             grd.append(rt.grade.french)
-
+    """
     queryset = GradeScale.objects.filter(french__in=grd).order_by("french")
     serializer_class = GradeScaleSerializer

@@ -47,6 +47,7 @@ class GradeScale(models.Model):
         verbose_name = "Grad Skala"
         verbose_name_plural = "Grad Skalas"
 
+    uuid = models.UUIDField()
     yds = models.CharField(max_length=10, verbose_name="YDS (USA)", null=True, blank=True)
     british_tech = models.CharField(max_length=10, verbose_name="British (UK) Tech", null=True, blank=True)
     british_adj = models.CharField(max_length=10, verbose_name="British (UK) Adj", null=True, blank=True)
@@ -62,7 +63,7 @@ class GradeScale(models.Model):
         return "%s" % self.french
 
     def save(self, *args, **kwargs):
-        if not self.uuid or self.uuid is None:
+        if not self.uuid or self.uuid is None or self.uuid is "":
             self.uuid = uuid.uuid4()
         return super().save(*args, **kwargs)
 
@@ -109,7 +110,7 @@ class Route(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return "%s (%s)" % (self.name, self.grade.french)
+        return self.name # "%s (%s)" % (self.name, self.grade.french)
 
 
 class RouteArchive(models.Model):
