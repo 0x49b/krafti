@@ -66,7 +66,7 @@ DATABASES = {
         'USER': 'krdb',
         'PASSWORD': 'aVeikie6noochaerathu',
         'HOST': '33339.hostserv.eu',
-        'PORT': '5432',
+        'PORT': '5432', #uNg8epeigoo
     }
 }
 
@@ -122,3 +122,4 @@ REST_FRAMEWORK = {
 }
 
 MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczFndCJ9.WovWxlPOYsXXiIiPJeeiGA"
+SECURE_SSL_REDIRECT = False
