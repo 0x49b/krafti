@@ -37,7 +37,7 @@ six==1.16.0
 soupsieve==2.2.1
 sqlparse==0.4.4
 uritemplate==3.0.1
-urllib3==1.26.5
+urllib3==1.26.16
 uuid==1.30
 whitenoise==5.2.0
 yarg==0.1.9
