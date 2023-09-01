@@ -37,6 +37,9 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
+
+RUN ["python", "manage.py", "migrate"]
+
 COPY ./start.sh /
 RUN ["chmod", "+x", "/opt/krafti/start.sh"]
 

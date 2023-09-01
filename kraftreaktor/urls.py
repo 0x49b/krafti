@@ -28,10 +28,10 @@ router.register(r'routes', routes.RouteViewSet)
 router.register(r'categories', routes.CategoryViewSet)
 router.register(r'grades', routes.GradeScaleViewSet)
 router.register(r'visits', counter.LastCounterViewSet)
-router.register(r'opening-hours', meta.OpeningHoursViewSet)
+# router.register(r'opening-hours', meta.OpeningHoursViewSet)
 router.register(r'current-grades', routes.CurrentGradesViewSet)
-router.register(r'trophy-routes', trophy.TrophyRouteViewSet)
-router.register(r'trophy-categories', trophy.TrophyCategoryViewSet)
+# router.register(r'trophy-routes', trophy.TrophyRouteViewSet)
+# router.register(r'trophy-categories', trophy.TrophyCategoryViewSet)
 
 urlpatterns = [
     path('trophy/', include('trophy.urls')),
