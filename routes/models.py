@@ -63,7 +63,7 @@ class GradeScale(models.Model):
         return "%s" % self.french
 
     def save(self, *args, **kwargs):
-        if not self.uuid or self.uuid is None or self.uuid is "":
+        if not self.uuid or self.uuid == None or self.uuid == "":
             self.uuid = uuid.uuid4()
         return super().save(*args, **kwargs)
 
@@ -103,7 +103,7 @@ class Route(models.Model):
     archived = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if not self.uuid or self.uuid is None:
+        if not self.uuid or self.uuid == None:
             self.uuid = uuid.uuid4()
         if not self.slug:
             self.slug = slugify(self.name)
