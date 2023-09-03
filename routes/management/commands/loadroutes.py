@@ -80,9 +80,9 @@ class Command(BaseCommand):
                 )
 
                 if created:
-                    logger.info("Added new Route %s with Grade %s" % (route, route.grade.french))
+                    logger.info("Added new Route %s with Grade %s at RouteNo %s" % (route, route.grade.french, route_num))
                 else:
-                    logger.info("Got Route %s with Grade %s" % (route, route.grade.french))
+                    logger.info("Got Route %s with Grade %s at RouteNo %s" % (route, route.grade.french, route_num))
 
             i = i + 1
 
