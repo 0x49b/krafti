@@ -22,5 +22,4 @@ jobs:
     steps:
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.1.1
-      with: fthievent/krafti:$(git describe --tags `git rev-list --tags --max-count=1`)
-       
+      with: fthievent/krafti:0.0.36
