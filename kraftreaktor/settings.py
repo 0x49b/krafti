@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 't%g=4g8w6f-s-2(!ah_+#%3j@9y&o-k#*c_gjr8q8c4@&28(^q'
 DEBUG = True
-ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "127.0.0.1", "https://kr.thievent.org"]
+ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "127.0.0.1", "https://kr.thievent.org", "*"]
 PERMANENT_CLOSED = os.getenv('PERMANENT_CLOSED', '01.01.1900 00:00:00')
 OPENING_TIMES = os.getenv('OPENING_TIMES',
                           {0: ("13:00", "22:00"), 1: ("09:00", "22:00"), 2: ("09:00", "22:00"), 3: ("09:00", "22:00"),
@@ -127,9 +127,12 @@ REST_FRAMEWORK = {
 MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczFndCJ9.WovWxlPOYsXXiIiPJeeiGA"
 SECURE_SSL_REDIRECT = False
 
+CORS_ALLOW_ALL_ORIGINS = True
+'''
 CORS_ALLOWED_ORIGINS = [
     "https://kr.thievent.org",
     "http://33339.hostserv.eu",
     "http://localhost:8080",
     "http://127.0.0.1:9000"
 ]
+'''
