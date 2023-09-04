@@ -128,7 +128,6 @@ MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczF
 SECURE_SSL_REDIRECT = False
 
 CORS_ALLOWED_ORIGINS = [
-    r"^http(s*)://\w+\.thievent\.org$",
     "https://kr.thievent.org",
     "http://33339.hostserv.eu",
     "http://localhost:8080",
