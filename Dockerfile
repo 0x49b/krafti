@@ -39,7 +39,6 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 WORKDIR $CONTAINER_PROJECT
 
 # Do the migrations
-RUN ["python", "manage.py", "makemigrations"]
 RUN ["python", "manage.py", "migrate"]
 
 COPY ./start.sh /
