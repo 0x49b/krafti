@@ -62,6 +62,12 @@ class Command(BaseCommand):
 
                 if route_num in selfsecurity:
                     cat = Category.objects.get(slug__exact="sicherungsautomaten")
+                else:
+                    try:
+                        cat = Category.objects.get(id=categorie)
+                    except Exception as e:
+                        cat = None
+                        print("Exception while resolving Category: {exception}".format(exception=e))
 
                 if name == "":
                     name = "#%s" % grd.french
@@ -80,9 +86,10 @@ class Command(BaseCommand):
                 )
 
                 if created:
-                    logger.info("Added new Route %s with Grade %s at RouteNo %s" % (route, route.grade.french, route_num))
+                    logger.info(
+                        "Added new Route %s with Grade %s at RouteNo %s resolved to Category %s" % (route, route.grade.french, route_num, cat.name))
                 else:
-                    logger.info("Got Route %s with Grade %s at RouteNo %s" % (route, route.grade.french, route_num))
+                    logger.info("Got Route %s with Grade %s at RouteNo %s to Category %s" % (route, route.grade.french, route_num, cat.name))
 
             i = i + 1
 

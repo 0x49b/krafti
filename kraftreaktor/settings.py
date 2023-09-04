@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'tinymce',
     'location_field.apps.DefaultConfig',
     'drf_multiple_model',
+    'corsheaders',
 
     'counter',
     'routes',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -67,7 +69,7 @@ DATABASES = {
         'USER': 'krdb',
         'PASSWORD': 'aVeikie6noochaerathu',
         'HOST': '33339.hostserv.eu',
-        'PORT': '5432', #uNg8epeigoo
+        'PORT': '5432',  # uNg8epeigoo
     }
 }
 
@@ -124,3 +126,11 @@ REST_FRAMEWORK = {
 
 MAPBOX_KEY = "pk.eyJ1IjoiZmxvamVyZW1pYXMiLCJhIjoiY2txNW4zNjFxMDljczJvbW14aW5hczFndCJ9.WovWxlPOYsXXiIiPJeeiGA"
 SECURE_SSL_REDIRECT = False
+
+CORS_ALLOWED_ORIGINS = [
+    r"^http(s*)://\w+\.thievent\.org$",
+    "https://kr.thievent.org",
+    "http://33339.hostserv.eu",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
+]
