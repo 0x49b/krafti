@@ -5,7 +5,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 't%g=4g8w6f-s-2(!ah_+#%3j@9y&o-k#*c_gjr8q8c4@&28(^q'
 DEBUG = True
 ALLOWED_HOSTS = ["33339.hostserv.eu", "kr.thievent.org", "127.0.0.1", "https://kr.thievent.org"]
-CSRF_TRUSTED_ORIGINS = ["33339.hostserv.eu", "kr.thievent.org", "127.0.0.1", "https://kr.thievent.org"]
+CSRF_TRUSTED_ORIGINS = ["http://33339.hostserv.eu",
+                        "https://33339.hostserv.eu",
+                        "http://kr.thievent.org",
+                        "https://kr.thievent.org",
+                        "http://127.0.0.1:8080",
+                        "http://localhost:8080"]
 
 PERMANENT_CLOSED = os.getenv('PERMANENT_CLOSED', '01.01.1900 00:00:00')
 OPENING_TIMES = os.getenv('OPENING_TIMES',
