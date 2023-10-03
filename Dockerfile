@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.12
 
 LABEL Maintainer="Florian Thiévent"
 LABEL traefik.enable="true"
