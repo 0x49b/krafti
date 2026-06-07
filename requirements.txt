@@ -1,6 +1,6 @@
 amqp==5.1.1
 asgiref==3.7.2
-beautifulsoup4==4.12.2
+beautifulsoup4==4.15.0
 billiard==4.1.0
 celery==5.3.4
 certifi==2023.7.22
